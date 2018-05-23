@@ -97,10 +97,13 @@
     }
 
     function getBearer(token) {
-      url = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+      urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
       console.log(url)
-      jQuery.ajax(url,function(data, status) {
-        setBearer(data)
+      $.ajax(
+        url: urlToCall,
+        dataType: "jsonp",
+        success: function(response) {
+        setBearer(response)
       });
     }
 
