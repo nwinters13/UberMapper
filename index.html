@@ -73,12 +73,12 @@
 <script>
   rides = []
 
-  function getAllRideHistory() {
+  async function getAllRideHistory() {
     totalRides = requestIDs.length;
     for (i = 0; i < 50; i++) {
       makeRequestHistoryCall(requestIDs[i])
       if (i % 10 == 0) {
-        timeout(1000)
+        await sleep(300)
       }
     }
   }
@@ -105,13 +105,7 @@
   }
 
   function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function timeout(timeout) {
-    console.log('Taking a break...');
-    await sleep(timeout);
-    console.log('Two second later');
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
 </script>
