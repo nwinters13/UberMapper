@@ -65,10 +65,17 @@
       response_type: "code"
     })
     client.callback()
+
+    let token = client.getToken(opts)
+    if (token !== null) {
+    	console.log("I got the token: ", token)
+    } else {
+      client.getToken()
+        .then((token) => {
+        console.log("I am getting the token: ", token)
+      })
+    }
     // Making sure the token is obtained.
     // Will redirect the user for authentication if token is not available.
-    client.getToken()
-      .then((token) => {
-      console.log("I got the token: ", token)
-      })
+
 </script>
