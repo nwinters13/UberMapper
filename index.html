@@ -88,6 +88,7 @@
         crossDomain: true, // tell browser to allow cross domain.
         success: function(data) {
         //functionality goes here;
+          console.log(data)
           rides[i]['destination.longitude'] = data['destination.longitude']
           rides[i]['destination.latitude'] = data['destination.latitude']
           rides[i]['pickup.latitude'] = data['pickup.latitude']
@@ -142,7 +143,6 @@
             console.log(ride)
           }
           if (ride['status'] == 'completed') {
-            console.log(ride)
             currentRide = {
                             'request_id': ride['request_id'],
                             'distance': ride['distance'],
