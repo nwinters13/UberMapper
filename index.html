@@ -70,17 +70,16 @@
       response_type: "code",
       debug: "true"
     })
-    //client.callback()
-    // https://zeit.co/blog/async-and-await
-    function sleep (time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
+    checkToken()
+    
     function checkToken() {
       var urlParams = new URLSearchParams(window.location.search);
-      console.log(urlParams.get('code'))
+      token = urlParams.get('code')
+      if (token == null) {
+        getToken()
+      }
     }
 
-    // Usage!
     function getToken() {
       client.getToken()
         .then((token) => {
