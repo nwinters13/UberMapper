@@ -142,7 +142,7 @@
         requestsProcessedCount = requestsProcessedCount + currentLength
         for (i = 0; i < currentLength; i++) {
           ride = data['history'][i]
-          if (i > 20 && i < 25) {
+          if (ride['request_id'] == '9a17c194-303b-4abd-b51c-f52d20833d74' || ride['request_id'] == '53b2e97b-f36a-4275-a80e-46bef15255b8') {
             console.log(ride)
           }
           if (ride['status'] == 'completed') {
