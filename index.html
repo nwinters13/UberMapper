@@ -96,7 +96,7 @@
       })
     }
 
-    function makeTheCall() {
+    function makeTheCall(token) {
         var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
         $.ajax({
           type: 'GET',
@@ -120,7 +120,7 @@
 
     function getBearer(token) {
       urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
-      makeTheCall()
+      makeTheCall(token)
       // console.log(urlToCall)
       // $.getJSON(urlToCall, function(response) {
       //   console.log(response)
