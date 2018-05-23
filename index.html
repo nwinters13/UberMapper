@@ -133,11 +133,9 @@
         requestsCount = data['count']
         currentLength = data['history'].length
         requestsProcessedCount = requestsProcessedCount + currentLength
-        console.log(data['history'])
         for (i = 0; i < currentLength; i++) {
           ride = data['history'][i]
           if (ride['status'] == 'completed') {
-            console.log(ride['request_id'])
             requestIDs.push(ride['request_id'])
           }
         }
