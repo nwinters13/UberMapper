@@ -24,7 +24,10 @@
         client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
         authorization: "https://login.uber.com/oauth/v2/authorize",
         response_type: "code",
-        scopes: { request : "all_trips history history_lite request_receipt"}
+        scopes: {
+          request : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT",
+          require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
+        }
       })
       client.callback()
   </script>
@@ -74,5 +77,4 @@
         .then((token) => {
         console.log("I am getting the token: ", token)
       })
-
 </script>
