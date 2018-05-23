@@ -98,6 +98,7 @@
 
     function getBearer(token) {
       url = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+      console.log(url)
       $.get(url,function(data, status) {
         setBearer(data)
       });
