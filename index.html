@@ -75,6 +75,7 @@
   requestsCount = 0
   requestsProcessedCount = 0
   function getUberRequestIDs() {
+    makeRequestIDsCall(requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       makeRequestIDsCall(requestsProcessedCount)
     }
