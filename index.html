@@ -77,9 +77,8 @@
     function sleep (time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
-
     // Usage!
-    sleep(500).then(() => {
+    sleep(5000).then(() => {
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
