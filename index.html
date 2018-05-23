@@ -60,7 +60,7 @@
 
 
 <script>
-  MILLIS_IN_MONTH = 2592000000
+  MILLIS_IN_MONTH = 2592000000;
   rides = []
 
   async function getAllRideHistory() {
@@ -110,6 +110,7 @@
 <script>
   requestsCount = 0
   requestsProcessedCount = 0
+
   function getUberRequestIDs() {
     makeRequestIDsCall(requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
