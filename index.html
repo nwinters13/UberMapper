@@ -77,6 +77,12 @@
     function sleep (time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
+
+    let opts = {
+      response_type: "code"
+    }
+    let token = client.checkToken(opts)
+    console.log(token)
     // Usage!
     sleep(20000).then(() => {
       client.getToken()
