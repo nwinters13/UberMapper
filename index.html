@@ -68,9 +68,9 @@
       authorization: "https://login.uber.com/oauth/v2/authorize",
       response_type: "code",
       debug: "true"
-      // scopes: {
-      //   require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
-      // }
+      scopes: {
+        require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
+      }
     })
     client.callback()
 </script>
