@@ -71,10 +71,11 @@
       debug: "true"
     })
     checkToken()
-    
+
     function checkToken() {
       var urlParams = new URLSearchParams(window.location.search);
       token = urlParams.get('code')
+      console.log(token)
       if (token == null) {
         getToken()
       }
