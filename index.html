@@ -25,6 +25,7 @@
   <body>
     <br>
     hello
+    <input id="clickMe" type="button" value="clickme" onclick="callOAuth();" />
     <br>
     <div id="map"></div>
     <script>
@@ -82,10 +83,10 @@
     let token = client.checkToken()
     console.log(token)
     // Usage!
-    sleep(30000).then(() => {
+    function callOAuth() {
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
       })
-    })
+    }
 </script>
