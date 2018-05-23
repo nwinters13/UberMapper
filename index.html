@@ -142,6 +142,9 @@
         requestsProcessedCount = requestsProcessedCount + currentLength
         for (i = 0; i < currentLength; i++) {
           ride = data['history'][i]
+          if (i > 20 && i < 25) {
+            console.log(ride)
+          }
           if (ride['status'] == 'completed') {
             requestIDs.push(ride['request_id'])
           }
