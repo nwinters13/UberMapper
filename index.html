@@ -69,8 +69,42 @@
   </body>
 </html>
 
-<script>
 
+<script>
+  rides = []
+
+  function getAllRideHistory() {
+    totalRides = requestIDs.length;
+    for (int i = 0; i < totalRides; i++) {
+      makeRequestHistoryCall(requestIDs[i])
+    }
+  }
+
+  makeRequestHistoryCall(requestID) {
+      $.ajax({
+        type: 'GET',
+        url: "https://api.uber.com/v1.2/requests/" + requestID,
+        headers: { 'Authorization': 'Bearer ' + bearerToken,
+                   'Accept-Language': 'en_US'
+                 },
+        contentType: 'application/json',
+        dataType: 'json', // use json only, not jsonp
+        crossDomain: true, // tell browser to allow cross domain.
+        success: function(data) {
+        //functionality goes here;
+          rides.push(data)
+        },
+        error: function(data) {
+        //functionality goes here;
+          console.log(data)
+        }
+      });
+    }
+  }
+</script>
+
+<!-- SCRIPT TO GET REQUEST IDS -->
+<script>
   requestIDs = []
   requestsCount = 0
   requestsProcessedCount = 0
@@ -79,6 +113,7 @@
     while (requestsProcessedCount < requestsCount) {
       makeRequestIDsCall(requestsProcessedCount)
     }
+    getAllRideHistory()
   }
 
   function makeRequestIDsCall(requestOffset) {
@@ -113,7 +148,6 @@
       }
     });
   }
-
 </script>
 
 
