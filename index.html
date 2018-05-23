@@ -72,6 +72,9 @@
     // Making sure the token is obtained.
     // Will redirect the user for authentication if token is not available.
     let token = client.checkToken(opts)
+      .then((token) => {
+        console.log("I got the token: ", token)
+      })
     if (token !== null) {
       client.getToken(opts)
         .then((token) => {
