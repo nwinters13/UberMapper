@@ -71,15 +71,13 @@
       debug: "true"
     })
     client.callback()
-</script>
-<script>
     // https://zeit.co/blog/async-and-await
     function sleep (time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
     function checkToken() {
-      let token = client.checkToken()
-      console.log(token)
+      var urlParams = new URLSearchParams(window.location.search);
+      console.log(urlParams.get('code'))
     }
     // Usage!
     function getToken() {
