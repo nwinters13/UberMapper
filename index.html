@@ -25,6 +25,12 @@
   <body>
     <br>
     hello
+    <div id="currentToken"></div>
+    <br>
+    <div id="currentBearer"></div>
+    <br>
+    goodbye
+    <br>
     <input id="getToken" type="button" value="get Token" onclick="getToken();" />
     <input id="checkToken" type="button" value="check Token" onclick="checkToken();" />
     <br>
@@ -74,10 +80,12 @@
 
     function checkToken() {
       var urlParams = new URLSearchParams(window.location.search);
-      token = urlParams.get('code')
-      console.log(token)
+      let token = urlParams.get('code')
+      $("#currentToken").text(token)
       if (token == null) {
         getToken()
+      } else {
+        getBearer(token)
       }
     }
 
@@ -86,5 +94,16 @@
         .then((token) => {
         console.log("I am getting the token: ", token)
       })
+    }
+
+    function getBearer(token) {
+      url = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+      $.get(url,function(data, status) {
+        setBearer(data)
+      });
+    }
+
+    function setBearer(data) {
+      $("#currentBearer").text(data)
     }
 </script>
