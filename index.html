@@ -63,9 +63,9 @@
         });
       }
     </script>
-    <script async defer
+    <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBIrSB-I4yS-WRAfMBHB--8UmV9stjzL4&callback=initMap">
-    </script>
+    </script> -->
   </body>
 </html>
 <script>
@@ -101,6 +101,7 @@
         $.ajax({
           type: 'GET',
           url: destinationUrl,
+          contentType: 'application/json',
           dataType: 'json', // use json only, not jsonp
           crossDomain: true, // tell browser to allow cross domain.
           success: function(data) {
