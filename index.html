@@ -68,6 +68,41 @@
     </script> -->
   </body>
 </html>
+
+<script>
+
+  function getUberRequestIDs() {
+    makeRequestIDsCall(0)
+  }
+
+  function makeRequestIDsCall(requestOffset) {
+    $.ajax({
+      type: 'GET',
+      url: destinationUrl,
+      data: { limit: 50, offset: requestOffset}
+      contentType: 'application/json',
+      dataType: 'json', // use json only, not jsonp
+      crossDomain: true, // tell browser to allow cross domain.
+      success: function(data) {
+      //functionality goes here;
+        console.log(data)
+      },
+      error: function(data) {
+      //functionality goes here;
+        console.log(data)
+      }
+    });
+
+    curl -H 'Authorization: Bearer <TOKEN>' \
+     -H 'Accept-Language: en_US' \
+     -H 'Content-Type: application/json' \
+     'https://api.uber.com/v1.2/history'
+  }
+
+</script>
+
+
+<!-- SCRIPT FOR GETTING BEARER TOKEN -->
 <script>
     let client = new jso.JSO({
       providerID: "uber",
@@ -96,8 +131,7 @@
       })
     }
 
-    function makeTheCall(token) {
-        var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+    function makeTheCall(destinationUrl, token) {
         $.ajax({
           type: 'GET',
           url: destinationUrl,
@@ -117,10 +151,13 @@
       }
 
     function getBearer(token) {
-      makeTheCall(token)
+      var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+      makeTheCall(destinationUrl, token)
     }
 
     function setBearer(data) {
       $("#currentBearer").text(data['access_token'])
+      bearerToken = data['access_token']
+      getUberRequestIDs()
     }
 </script>
