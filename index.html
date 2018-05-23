@@ -97,7 +97,7 @@
     }
 
     function getBearer(token) {
-      urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?callback=?&token=" + token
+      urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?callback=callback&token=" + token
       console.log(urlToCall)
       $.getJSON(urlToCall, function(response) {
         console.log(response)
