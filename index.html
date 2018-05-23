@@ -80,7 +80,7 @@
       type: 'GET',
       url: "https://api.uber.com/v1.2/history",
       data: { limit: 50, offset: requestOffset},
-      headers: { 'Authorization': 'Bearer ' + bearerToken }
+      headers: { 'Authorization': 'Bearer ' + bearerToken },
       contentType: 'application/json',
       dataType: 'json', // use json only, not jsonp
       crossDomain: true, // tell browser to allow cross domain.
