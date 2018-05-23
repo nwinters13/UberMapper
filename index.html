@@ -75,12 +75,12 @@
 
   function getAllRideHistory() {
     totalRides = requestIDs.length;
-    for (int i = 0; i < totalRides; i++) {
+    for (i = 0; i < totalRides; i++) {
       makeRequestHistoryCall(requestIDs[i])
     }
   }
 
-  makeRequestHistoryCall(requestID) {
+  function makeRequestHistoryCall(requestID) {
       $.ajax({
         type: 'GET',
         url: "https://api.uber.com/v1.2/requests/" + requestID,
