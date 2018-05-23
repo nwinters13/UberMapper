@@ -72,20 +72,3 @@
     })
     client.callback()
 </script>
-<script>
-    // https://zeit.co/blog/async-and-await
-    function sleep (time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
-    function checkToken() {
-      let token = client.checkToken()
-      console.log(token)
-    }
-    // Usage!
-    function getToken() {
-      client.getToken()
-        .then((token) => {
-        console.log("I am getting the token: ", token)
-      })
-    }
-</script>
