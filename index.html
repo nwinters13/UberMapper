@@ -19,6 +19,9 @@
     </style>
   </head>
   <body>
+    <br>
+    hello
+    <br>
     <div id="map"></div>
     <script>
       // This example adds a predefined symbol (an arrow) to a polyline.
@@ -53,3 +56,23 @@
     </script>
   </body>
 </html>
+
+<script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
+<script>
+    let client = new jso.JSO({
+      client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
+      //redirect_uri: "www.google.com", // The URL where you is redirected back, and where you perform run the callback() function.
+      authorization: "https://login.uber.com/oauth/v2/authorize"
+    })
+    client.callback()
+    let opts = {
+      response_type: "code"
+    }
+    // Making sure the token is obtained.
+    // Will redirect the user for authentication if token is not available.
+    client.getToken(opts)
+      .then((token) => {
+      	console.log("I got the token: ", token)
+      })
+
+</script>
