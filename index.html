@@ -65,7 +65,8 @@
       providerID: "uber",
       client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
       authorization: "https://login.uber.com/oauth/v2/authorize",
-      response_type: "code"
+      response_type: "code",
+      debug: "true"
       // scopes: {
       //   require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
       // }
@@ -84,7 +85,7 @@
     let token = client.checkToken(opts)
     console.log(token)
     // Usage!
-    sleep(20000).then(() => {
+    sleep(30000).then(() => {
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
