@@ -81,9 +81,7 @@
       url: "https://api.uber.com/v1.2/history",
       data: { limit: 50, offset: requestOffset},
       headers: { 'Authorization': 'Bearer ' + bearerToken,
-                 'Accept-Language': 'en_US',
-  		           'Content-Type': 'application/json'
-                 'Access-Control-Allow-Origin': '*'
+                 'Accept-Language': 'en_US'
                },
       contentType: 'application/json',
       dataType: 'json', // use json only, not jsonp
