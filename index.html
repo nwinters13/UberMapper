@@ -69,7 +69,8 @@
       response_type: "code",
       debug: "true"
       scopes: {
-        require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
+        require : "history",
+        request : "history"
       }
     })
     client.callback()
