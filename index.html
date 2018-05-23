@@ -86,7 +86,7 @@
   function makeRequestHistoryCall(requestID) {
       $.ajax({
         type: 'GET',
-        url: "https://api.uber.com/v1.2/requests/" + requestID,
+        url: "https://api.uber.com/v1/requests/" + requestID,
         headers: { 'Authorization': 'Bearer ' + bearerToken,
                    'Accept-Language': 'en_US'
                  },
@@ -126,7 +126,7 @@
   function makeRequestIDsCall(requestOffset) {
     $.ajax({
       type: 'GET',
-      url: "https://api.uber.com/v1/history",
+      url: "https://api.uber.com/v1.2/history",
       data: { limit: 50, offset: requestOffset},
       headers: { 'Authorization': 'Bearer ' + bearerToken,
                  'Accept-Language': 'en_US'
