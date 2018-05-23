@@ -62,18 +62,27 @@
 </html>
 <script>
     let client = new jso.JSO({
+      providerID: "uber",
       client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
       authorization: "https://login.uber.com/oauth/v2/authorize",
-      response_type: "code",
-      scopes: {
-        require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
-      }
+      response_type: "code"
+      // scopes: {
+      //   require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
+      // }
     })
     client.callback()
 </script>
 <script>
+    // https://zeit.co/blog/async-and-await
+    function sleep (time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
+    // Usage!
+    sleep(500).then(() => {
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
       })
+    })
 </script>
