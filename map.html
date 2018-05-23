@@ -74,7 +74,7 @@
     function checkToken() {
       var x = document.URL;
       if (x.contains("code")) {
-        location.replace(x.("code", "token"));
+        location.replace(x.replace("code", "token"));
       }
       let token = client.checkToken()
       console.log(token)
