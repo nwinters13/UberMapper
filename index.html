@@ -98,7 +98,9 @@
         requestsCount = data['count']
         requestsProcessedCount = requestsProcessedCount + data['history'].length
         for (ride in data['history']) {
+          console.log(ride)
           if (ride['status'] == 'completed') {
+            console.log(ride['request_id'])
             requestIDs.push(ride['request_id'])
           }
         }
