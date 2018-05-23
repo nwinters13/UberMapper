@@ -75,7 +75,7 @@
 
   async function getAllRideHistory() {
     totalRides = requestIDs.length;
-    for (i = 0; i < 50; i++) {
+    for (i = 50; i > 0; i--) {
       makeRequestHistoryCall(requestIDs[i])
       if (i % 5 == 0) {
         await sleep(5000)
