@@ -77,6 +77,9 @@
     totalRides = requestIDs.length;
     for (i = 0; i < 50; i++) {
       makeRequestHistoryCall(requestIDs[i])
+      if (i % 10 == 0) {
+        timeout(300)
+      }
     }
   }
 
@@ -99,6 +102,16 @@
           console.log(data)
         }
       });
+  }
+
+  function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function timeout(timeout) {
+    console.log('Taking a break...');
+    await sleep(timeout);
+    console.log('Two second later');
   }
 
 </script>
