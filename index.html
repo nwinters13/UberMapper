@@ -96,14 +96,37 @@
       })
     }
 
+    function makeTheCall() {
+        var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+        $.ajax({
+          type: 'GET',
+          url: destinationUrl,
+          dataType: 'json', // use json only, not jsonp
+          crossDomain: true, // tell browser to allow cross domain.
+          success: successResopnse,
+          error: failureFunction
+        });
+      }
+
+      successResponse = function(data) {
+      //functionality goes here;
+        console.log(data)
+      }
+
+      failureFunction = function(data) {
+      //functionality goes here;
+        console.log(data)
+      }
+
     function getBearer(token) {
-      urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?callback=callback&token=" + token
-      console.log(urlToCall)
-      $.getJSON(urlToCall, function(response) {
-        console.log(response)
-          setBearer(response)
-        }
-      )
+      urlToCall = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
+      makeTheCall()
+      // console.log(urlToCall)
+      // $.getJSON(urlToCall, function(response) {
+      //   console.log(response)
+      //     setBearer(response)
+      //   }
+      // )
     }
 
     function setBearer(data) {
