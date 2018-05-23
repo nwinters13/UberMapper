@@ -96,16 +96,6 @@
       })
     }
 
-    successResponse = function(data) {
-    //functionality goes here;
-      console.log(data)
-    }
-
-    failureFunction = function(data) {
-    //functionality goes here;
-      console.log(data)
-    }
-
     function makeTheCall(token) {
         var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
         $.ajax({
@@ -113,8 +103,14 @@
           url: destinationUrl,
           dataType: 'json', // use json only, not jsonp
           crossDomain: true, // tell browser to allow cross domain.
-          success: successResponse,
-          error: failureFunction
+          success: function(data) {
+          //functionality goes here;
+            console.log(data)
+          },
+          error: function(data) {
+          //functionality goes here;
+            console.log(data)
+          }
         });
       }
 
