@@ -75,10 +75,10 @@
 
   async function getAllRideHistory() {
     totalRides = requestIDs.length;
-    for (i = totalRides; i > totalRides - 30; i--) {
+    for (i = 0; i < 30; i++) {
       makeRequestHistoryCall(requestIDs[i])
       if (i % 5 == 0) {
-        await sleep(5000)
+        await sleep(500)
       }
     }
   }
@@ -86,7 +86,7 @@
   function makeRequestHistoryCall(requestID) {
       $.ajax({
         type: 'GET',
-        url: "https://api.uber.com/v1/requests/" + requestID,
+        url: "https://api.uber.com/v1.2/requests/" + requestID,
         headers: { 'Authorization': 'Bearer ' + bearerToken,
                    'Accept-Language': 'en_US'
                  },
