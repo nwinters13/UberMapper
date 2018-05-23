@@ -71,8 +71,13 @@
 
 <script>
 
+  requestIDs = []
+  requestsCount = 0
+  requestsProcessedCount = 0
   function getUberRequestIDs() {
-    makeRequestIDsCall(0)
+    while (requestsProcessedCount < requestsCount) {
+      makeRequestIDsCall(requestsProcessedCount)
+    }
   }
 
   function makeRequestIDsCall(requestOffset) {
@@ -86,9 +91,16 @@
       contentType: 'application/json',
       dataType: 'json', // use json only, not jsonp
       crossDomain: true, // tell browser to allow cross domain.
+      async: false,
       success: function(data) {
       //functionality goes here;
-        console.log(data)
+        requestsCount = data['count']
+        requestsProcessedCount = requestsProcessedCount + data['history'].length
+        for (ride in data['history']) {
+          if (ride['status'] == 'completed') {
+            requestIDs.push(ride['request_id'])
+          }
+        }
       },
       error: function(data) {
       //functionality goes here;
