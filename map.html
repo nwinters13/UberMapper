@@ -67,12 +67,15 @@
       providerID: "uber",
       client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
       authorization: "https://login.uber.com/oauth/v2/authorize",
-      response_type: "code",
       debug: "true"
     })
     client.callback()
 
     function checkToken() {
+      var x = document.URL;
+      if (x.contains("code")) {
+        location.replace(x.("code", "token"));
+      }
       let token = client.checkToken()
       console.log(token)
     }
