@@ -139,7 +139,9 @@
           if (ride['status'] == 'completed') {
             currentRide = {
                             'request_id': ride['request_id'],
-                            'distance': ride['distance']
+                            'distance': ride['distance'],
+                            'start_time': ride['start_time'],
+                            'end_time': ride['end_time']
                           }
             unique = true
             for (j = 0; j < rides.length; j++) {
