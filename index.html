@@ -25,7 +25,8 @@
   <body>
     <br>
     hello
-    <input id="clickMe" type="button" value="clickme" onclick="callOAuth();" />
+    <input id="getToken" type="button" value="get Token" onclick="getToken();" />
+    <input id="checkToken" type="button" value="check Token" onclick="getToken();" />
     <br>
     <div id="map"></div>
     <script>
@@ -80,11 +81,12 @@
     function sleep (time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
-
-    let token = client.checkToken()
-    console.log(token)
+    function checkToken() {
+      let token = client.checkToken()
+      console.log(token)
+    }
     // Usage!
-    function callOAuth() {
+    function getToken() {
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
