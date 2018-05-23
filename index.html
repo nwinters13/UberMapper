@@ -63,7 +63,7 @@
   MILLIS_IN_MONTH = 2592000000
   rides = []
 
-  function getAllRideHistory() {
+  async function getAllRideHistory() {
     totalRides = rides.length;
     for (i = 0; i < 30; i++) {
       let d = new Date()
