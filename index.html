@@ -19,11 +19,7 @@
     </style>
   </head>
   <script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-    crossorigin="anonymous">
-  </script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 
   <body>
@@ -103,7 +99,7 @@
     function getBearer(token) {
       url = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
       console.log(url)
-      $.get(url,function(data, status) {
+      jQuery.get(url,function(data, status) {
         setBearer(data)
       });
     }
