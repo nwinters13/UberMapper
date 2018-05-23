@@ -19,17 +19,7 @@
     </style>
   </head>
   <script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
-  <script>
-      let client = new jso.JSO({
-        client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
-        authorization: "https://login.uber.com/oauth/v2/authorize",
-        response_type: "code",
-        scopes: {
-          require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
-        }
-      })
-      client.callback()
-  </script>
+
 
 
   <body>
@@ -70,7 +60,17 @@
     </script>
   </body>
 </html>
-
+<script>
+    let client = new jso.JSO({
+      client_id: "FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ",
+      authorization: "https://login.uber.com/oauth/v2/authorize",
+      response_type: "code",
+      scopes: {
+        require : "ALL_TRIPS HISTORY HISTORY_LITE REQUEST_RECEIPT"
+      }
+    })
+    client.callback()
+</script>
 <script>
       client.getToken()
         .then((token) => {
