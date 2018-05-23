@@ -23,17 +23,6 @@
 
 
   <body>
-    <br>
-    hello
-    <div id="currentToken"></div>
-    <br>
-    <div id="currentBearer"></div>
-    <br>
-    goodbye
-    <br>
-    <input id="getToken" type="button" value="get Token" onclick="getToken();" />
-    <input id="checkToken" type="button" value="check Token" onclick="checkToken();" />
-    <br>
     <div id="map"></div>
     <script>
       // This example adds a predefined symbol (an arrow) to a polyline.
@@ -73,17 +62,17 @@
 <script>
   rides = []
 
-  async function getAllRideHistory() {
-    totalRides = requestIDs.length;
+  function getAllRideHistory() {
+    totalRides = rides.length;
     for (i = 0; i < 30; i++) {
-      makeRequestHistoryCall(requestIDs[i])
+      makeRequestHistoryCall(rides[i], i)
       if (i % 5 == 0) {
         await sleep(1000)
       }
     }
   }
 
-  function makeRequestHistoryCall(requestID) {
+  function makeRequestHistoryCall(requestID, i) {
       $.ajax({
         type: 'GET',
         url: "https://api.uber.com/v1.2/requests/" + requestID,
@@ -95,7 +84,10 @@
         crossDomain: true, // tell browser to allow cross domain.
         success: function(data) {
         //functionality goes here;
-          rides.push(data)
+          rides[i]['destination.longitude'] = data['destination.longitude']
+          rides[i]['destination.latitude'] = data['destination.latitude']
+          rides[i]['pickup.latitude'] = data['pickup.latitude']
+          rides[i]['pickup.longitude'] = data['pickup.longitude']
         },
         error: function(data) {
         //functionality goes here;
@@ -112,7 +104,6 @@
 
 <!-- SCRIPT TO GET REQUEST IDS -->
 <script>
-  requestIDs = []
   requestsCount = 0
   requestsProcessedCount = 0
   function getUberRequestIDs() {
@@ -146,7 +137,20 @@
             console.log(ride)
           }
           if (ride['status'] == 'completed') {
-            requestIDs.push(ride['request_id'])
+            currentRide = {
+                            'request_id': ride['request_id'],
+                            'distance': ride['distance']
+                          }
+            unique = true
+            for (j = 0; j < rides.length; j++) {
+              if (rides[j]['request_id'] == currentRide['request_id']) {
+                unique = false
+                console.log("Dupe request found")
+              }
+            }
+            if (unique == true) {
+              rides.push(currentRide)
+            }
           }
         }
       },
@@ -173,7 +177,6 @@
     function checkToken() {
       var urlParams = new URLSearchParams(window.location.search);
       let token = urlParams.get('code')
-      $("#currentToken").text(token)
       if (token == null) {
         getToken()
       } else {
@@ -197,7 +200,6 @@
           crossDomain: true, // tell browser to allow cross domain.
           success: function(data) {
           //functionality goes here;
-            console.log(data)
             setBearer(data)
           },
           error: function(data) {
@@ -213,7 +215,6 @@
     }
 
     function setBearer(data) {
-      $("#currentBearer").text(data['access_token'])
       bearerToken = data['access_token']
       getUberRequestIDs()
     }
