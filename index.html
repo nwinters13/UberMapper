@@ -96,10 +96,11 @@
       success: function(data) {
       //functionality goes here;
         requestsCount = data['count']
-        requestsProcessedCount = requestsProcessedCount + data['history'].length
+        currentLength = data['history'].length
+        requestsProcessedCount = requestsProcessedCount + currentLength
         console.log(data['history'])
-        for (ride in data['history']) {
-          //console.log(ride)
+        for (i = 0; i < currentLength; i++) {
+          ride = data['history'][i]
           if (ride['status'] == 'completed') {
             console.log(ride['request_id'])
             requestIDs.push(ride['request_id'])
