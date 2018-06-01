@@ -104,7 +104,7 @@
     for (let i = 0; i < rides.length; i++) {
       currentProductArray = series.get(rides[i]['ride_type'])
       if (currentProductArray === undefined) {
-        currentProductArray = [graph1MinuteBuckets.length].fill(0)
+        currentProductArray = new Array[graph1MinuteBuckets.length].fill(0)
         series.set(rides[i]['ride_type'], currentProductArray)
         console.log('Setting series: ' + rides[i]['ride_type'])
       }
