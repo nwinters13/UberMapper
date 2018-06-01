@@ -115,8 +115,8 @@
   function findEarliestMonth() {
     let earliestRide = new Date()
     for (let i = 0; i < rides.length; i++) {
-      if (new Date(rides[i]['start_time']) < earliestRide) {
-        earliestRide = new Date(rides[i]['start_time'])
+      if (new Date(rides[i]['start_time'] * 1000) < earliestRide) {
+        earliestRide = new Date(rides[i]['start_time'] * 1000)
       }
     }
     return new Date(earliestRide.getFullYear(), earliestRide.getMonth());
