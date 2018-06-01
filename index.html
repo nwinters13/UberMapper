@@ -79,7 +79,7 @@
   function makeProductIDHistoryCall(productId, i) {
       $.ajax({
         type: 'GET',
-        url: "https://api.uber.com/v1.2/products/" + requestID,
+        url: "https://api.uber.com/v1.2/products/" + productId,
         headers: { 'Authorization': 'Bearer ' + bearerToken,
                    'Accept-Language': 'en_US'
                  },
