@@ -39,7 +39,7 @@
 
   function makeRidesByMonth() {
     let earliestRide = findEarliestMonth()
-    ridesByDateSeries = generateRidesByMonthSeries(earliestMonth)
+    ridesByDateSeries = generateRidesByMonthSeries(earliestRide)
     console.log(earliestRide)
     Highcharts.chart('ridesByMonth', {
       chart: {
