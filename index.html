@@ -115,11 +115,11 @@
   requestIDs = new Set();
 
   function getDataFromUber() {
-    // makeRequestIDsCall(requestsProcessedCount)
-    // while (requestsProcessedCount < requestsCount) {
-    //   makeRequestIDsCall(requestsProcessedCount)
-    // }
-    getAllRideHistory()
+    makeRequestIDsCall(requestsProcessedCount)
+    while (requestsProcessedCount < requestsCount) {
+      makeRequestIDsCall(requestsProcessedCount)
+    }
+    //getAllRideHistory()
     //getProductTypeFromRideHistory()
   }
 
