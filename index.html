@@ -102,13 +102,16 @@
   function generateGraph1Series() {
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
-      currentProductArray = series.get(rides[i]['ride_type'])
+      let currentProductArray = series.get(rides[i]['ride_type'])
       if (currentProductArray === undefined) {
         currentProductArray = new Array(graph1MinuteBuckets.length).fill(0)
         series.set(rides[i]['ride_type'], currentProductArray)
         console.log('Setting series: ' + rides[i]['ride_type'])
       }
       rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
+      if (rideLengthInMinutes > 60) {
+        rideLengthInMinutes = 60
+      }
       indexForRideLength = Math.floor(rideLengthInMinutes / 5)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
       console.log(series)
