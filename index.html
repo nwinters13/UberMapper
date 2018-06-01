@@ -4,9 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Ubah Chahts</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css" rel="stylesheet" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js.map"></script> -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -26,50 +24,48 @@
 
 
   <body>
-    <svg id="graph1" style='height:600px'/>
+    <div id="graph1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
 
 <script>
-  function myData() {
-  var series1 = [];
-  for(var i =1; i < 100; i ++) {
-    series1.push({
-      x: i, y: 100 / i
-    });
-  }
 
-  return [
-    {
-      key: "Series #1",
-      values: series1,
-      color: "#0000ff"
-    }
-  ];
-  }
-
-  nv.addGraph(function() {
-  var chart = nv.models.lineChart();
-
-  chart.xAxis
-    .axisLabel("X-axis Label");
-
-  chart.yAxis
-    .axisLabel("Y-axis Label")
-    .tickFormat(d3.format("d"))
-    ;
-
-  d3.select("#graph1")
-    .datum(myData())
-    .transition().duration(500).call(chart);
-
-  nv.utils.windowResize(
-      function() {
-        chart.update();
-      }
-    );
-  return chart;
+  Highcharts.chart('graph1', {
+      chart: {
+          type: 'bar'
+      },
+      title: {
+          text: 'Stacked bar chart'
+      },
+      xAxis: {
+          categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Total fruit consumption'
+          }
+      },
+      legend: {
+          reversed: true
+      },
+      plotOptions: {
+          series: {
+              stacking: 'normal'
+          }
+      },
+      series: [{
+          name: 'John',
+          data: [5, 3, 4, 7, 2]
+      }, {
+          name: 'Jane',
+          data: [2, 2, 3, 2, 1]
+      }, {
+          name: 'Joe',
+          data: [3, 4, 4, 2, 5]
+      }]
   });
+
 </script>
 
 
