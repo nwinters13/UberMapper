@@ -66,15 +66,14 @@
   async function getAllProductIDs() {
     productIDIterator = productIDs.entries();
     count = 0
-    for (let productId of productIDIterator)
+    for (let productId of productIDIterator) {
         makeProductIDHistoryCall(productId)
         count = count + 1
         if (count % 8 == 0) {
           await sleep(500)
         }
-      }
-
     }
+
   }
 
   function makeProductIDHistoryCall(productId, i) {
