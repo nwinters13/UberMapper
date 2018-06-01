@@ -36,94 +36,95 @@
     makeGraph1()
   }
 
-function makeGraph1() {
-  graph1Series = generateGraph1Series()
-  Highcharts.chart('graph1', {
-      chart: {
-          type: 'column'
-      },
-      title: {
-          text: 'Stacked column chart'
-      },
-      xAxis: {
-          categories: graph1MinuteBuckets
-      },
-      yAxis: {
-          min: 0,
-          title: {
-              text: 'Total fruit consumption'
-          },
-          stackLabels: {
-              enabled: true,
-              style: {
-                  fontWeight: 'bold',
-                  color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-              }
-          }
-      },
-      legend: {
-          align: 'right',
-          x: -30,
-          verticalAlign: 'top',
-          y: 25,
-          floating: true,
-          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-          borderColor: '#CCC',
-          borderWidth: 1,
-          shadow: false
-      },
-      tooltip: {
-          headerFormat: '<b>{point.x}</b><br/>',
-          pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-      },
-      plotOptions: {
-          column: {
-              stacking: 'normal',
-              dataLabels: {
-                  enabled: true,
-                  color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-              }
-          }
-      },
-      series: graph1Series
-      // series: [{
-      //     name: 'John',
-      //     data: [5, 3, 4, 7, 2]
-      // }, {
-      //     name: 'Jane',
-      //     data: [2, 2, 3, 2, 1]
-      // }, {
-      //     name: 'Joe',
-      //     data: [3, 4, 4, 2, 5]
-      // }]
-  });
-}
-
-function generateGraph1Series() {
-  let series = new Map();
-  for (let i = 0; i < rides.length; i++) {
-    currentProductArray = series.get(rides['ride_type'])
-    if (currentProductArray === undefined) {
-      currentProductArray = [graph1Series.length].fill(0)
-      series.set(rides['ride_type'], currentProductArray)
+  function generateGraph1Series() {
+    let series = new Map();
+    for (let i = 0; i < rides.length; i++) {
+      currentProductArray = series.get(rides['ride_type'])
+      if (currentProductArray === undefined) {
+        currentProductArray = [graph1Series.length].fill(0)
+        series.set(rides['ride_type'], currentProductArray)
+      }
+      rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
+      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
+      currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
     }
-    rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
-    indexForRideLength = Math.floor(rideLengthInMinutes / 5)
-    currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
+
+    jsonToReturn = []
+    seriesIterator = series.entries()
+    entry = seriesIterator.next()
+    while (!entry.done) {
+      jsonToReturn.push({
+        name : entry.value[0],
+        data : entry.value[1]
+      })
+      entry = seriesIterator.next()
+    }
+    return jsonToReturn
   }
 
-  jsonToReturn = []
-  seriesIterator = series.entries()
-  entry = seriesIterator.next()
-  while (!entry.done) {
-    jsonToReturn.push({
-      name : entry.value[0],
-      data : entry.value[1]
-    })
-    entry = seriesIterator.next()
+  function makeGraph1() {
+    graph1Series = generateGraph1Series()
+    Highcharts.chart('graph1', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Stacked column chart'
+        },
+        xAxis: {
+            categories: graph1MinuteBuckets
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            }
+        },
+        series: graph1Series
+        // series: [{
+        //     name: 'John',
+        //     data: [5, 3, 4, 7, 2]
+        // }, {
+        //     name: 'Jane',
+        //     data: [2, 2, 3, 2, 1]
+        // }, {
+        //     name: 'Joe',
+        //     data: [3, 4, 4, 2, 5]
+        // }]
+    });
   }
-  return jsonToReturn
-}
+
 
 </script>
 
