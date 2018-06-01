@@ -60,8 +60,6 @@
 
 
 <script>
-  MILLIS_IN_MONTH = 2592000000
-  rides = []
 
   async function getAllProductIDs() {
     productIDIterator = productIDs.entries();
@@ -159,6 +157,7 @@
   requestsProcessedCount = 0
   productIDs = new Set();
   requestIDs = new Set();
+  productIDToRideType = new Map();
 
   function getDataFromUber() {
     makeRequestIDsCall(requestsProcessedCount)
@@ -195,6 +194,7 @@
           if (ride['status'] == 'completed') {
             currentRide = {
                             'request_id': ride['request_id'],
+                            'product_id': ride['product_id'],
                             'distance': ride['distance'],
                             'start_time': ride['start_time'],
                             'end_time': ride['end_time'],
