@@ -111,13 +111,16 @@
 <script>
   requestsCount = 0
   requestsProcessedCount = 0
+  productIDs = new Set();
+  requestIDs = new Set();
 
-  function getUberRequestIDs() {
-    makeRequestIDsCall(requestsProcessedCount)
-    while (requestsProcessedCount < requestsCount) {
-      makeRequestIDsCall(requestsProcessedCount)
-    }
+  function getDataFromUber() {
+    // makeRequestIDsCall(requestsProcessedCount)
+    // while (requestsProcessedCount < requestsCount) {
+    //   makeRequestIDsCall(requestsProcessedCount)
+    // }
     getAllRideHistory()
+    getProductTypeFromRideHistory()
   }
 
   function makeRequestIDsCall(requestOffset) {
@@ -201,7 +204,7 @@
       })
     }
 
-    function makeTheCall(destinationUrl, token) {
+    function getBearerTokenFromAws(destinationUrl, token) {
         $.ajax({
           type: 'GET',
           url: destinationUrl,
@@ -221,11 +224,11 @@
 
     function getBearer(token) {
       var destinationUrl = "https://sjphd5e9j3.execute-api.us-east-1.amazonaws.com/prod?token=" + token
-      makeTheCall(destinationUrl, token)
+      getBearerTokenFromAws(destinationUrl, token)
     }
 
     function setBearer(data) {
       bearerToken = data['access_token']
-      //getUberRequestIDs()
+      getDataFromUber()
     }
 </script>
