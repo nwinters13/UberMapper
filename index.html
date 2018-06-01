@@ -40,6 +40,7 @@
   function makeRidesByDate() {
     let earliestRide = findEarliestMonth()
     ridesByDateSeries = generateRidesByMonthSeries(earliestMonth)
+    console.log(earliestRide)
     Highcharts.chart('ridesByMonth', {
       chart: {
           type: 'area'
@@ -89,7 +90,6 @@
       if (currentProductArray === undefined) {
         currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
         series.set(rideType, currentProductArray)
-        console.log('Setting series: ' + rideType)
       }
       rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
       if (rideLengthInMinutes > 60) {
@@ -97,7 +97,6 @@
       }
       indexForRideLength = Math.floor(rideLengthInMinutes / 5)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
-      console.log(rideType)
     }
 
     jsonToReturn = []
