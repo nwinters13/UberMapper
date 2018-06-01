@@ -30,11 +30,11 @@
 
 <script>
 
-graph1MinuteBuckets = ['<5', '5-10', '10-15', '15-20', '20-25', '25-30', '30-35', '35-40', '40-45', '45-50', '50-55', '55-60', '60+']
+  graph1MinuteBuckets = ['<5', '5-10', '10-15', '15-20', '20-25', '25-30', '30-35', '35-40', '40-45', '45-50', '50-55', '55-60', '60+']
 
-function makeGraphs() {
-  makeGraph1()
-}
+  function makeGraphs() {
+    makeGraph1()
+  }
 
 function makeGraph1() {
   graph1Series = generateGraph1Series()
@@ -85,7 +85,7 @@ function makeGraph1() {
               }
           }
       },
-      series = graph1Series
+      series: graph1Series
       // series: [{
       //     name: 'John',
       //     data: [5, 3, 4, 7, 2]
