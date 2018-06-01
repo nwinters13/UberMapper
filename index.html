@@ -154,16 +154,11 @@
                             'city': ride['start_city']['display_name'],
                             'ride_time': parseInt(ride['end_time']) - parseInt(ride['start_time'])
                           }
-            unique = true
-            for (j = 0; j < rides.length; j++) {
-              if (rides[j]['request_id'] == currentRide['request_id']) {
-                unique = false
-                console.log("Dupe request found")
-              }
-            }
-            if (unique == true) {
+            if (!requestIDs.has(currentRide['request_id'])) {
               rides.push(currentRide)
+              requestIDs.add(currentRide['request_id'])
             }
+            productIDs.add(currentRide['product_id'])
           }
         }
       },
