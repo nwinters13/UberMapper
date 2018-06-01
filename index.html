@@ -63,6 +63,52 @@
   MILLIS_IN_MONTH = 2592000000
   rides = []
 
+  async function getAllProductIDs() {
+    productIDIterator = productIDs.entries();
+    count = 0
+    for (let productId of productIDIterator)
+        makeProductIDHistoryCall(productId)
+        count = count + 1
+        if (count % 8 == 0) {
+          await sleep(500)
+        }
+      }
+
+    }
+  }
+
+  function makeProductIDHistoryCall(productId, i) {
+      $.ajax({
+        type: 'GET',
+        url: "https://api.uber.com/v1.2/products/" + requestID,
+        headers: { 'Authorization': 'Bearer ' + bearerToken,
+                   'Accept-Language': 'en_US'
+                 },
+        contentType: 'application/json',
+        dataType: 'json', // use json only, not jsonp
+        crossDomain: true, // tell browser to allow cross domain.
+        success: function(data) {
+        //functionality goes here;
+          console.log(data)
+          for (let i = 0; i < rides.length; i++) {
+            if (productId == rides[i]['product_id']) {
+              rides[i]['ride_type'] = data
+            }
+          }
+        },
+        error: function(data) {
+        //functionality goes here;
+          console.log(data)
+        }
+      });
+  }
+
+</script>
+
+<script>
+  MILLIS_IN_MONTH = 2592000000
+  rides = []
+
   async function getAllRideHistory() {
     totalRides = rides.length
     for (i = 0; i < 30; i++) {
@@ -152,7 +198,8 @@
                             'start_time': ride['start_time'],
                             'end_time': ride['end_time'],
                             'city': ride['start_city']['display_name'],
-                            'ride_time': parseInt(ride['end_time']) - parseInt(ride['start_time'])
+                            'ride_time': parseInt(ride['end_time']) - parseInt(ride['start_time']),
+                            'ride_type': ''
                           }
             if (!requestIDs.has(currentRide['request_id'])) {
               rides.push(currentRide)
