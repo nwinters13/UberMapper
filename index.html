@@ -200,7 +200,6 @@
       if (currentProductArray === undefined) {
         currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
         series.set(rideType, currentProductArray)
-        console.log('Setting series: ' + rideType)
       }
       rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
       if (rideLengthInMinutes > 60) {
@@ -208,7 +207,6 @@
       }
       indexForRideLength = Math.floor(rideLengthInMinutes / 5)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
-      console.log(rideType)
     }
 
     jsonToReturn = []
@@ -297,7 +295,6 @@
         crossDomain: true, // tell browser to allow cross domain.
         success: function(data) {
         //functionality goes here;
-          console.log(data)
           rides[i]['destination.longitude'] = data['destination.longitude']
           rides[i]['destination.latitude'] = data['destination.latitude']
           rides[i]['pickup.latitude'] = data['pickup.latitude']
@@ -354,9 +351,6 @@
         requestsProcessedCount = requestsProcessedCount + currentLength
         for (i = 0; i < currentLength; i++) {
           ride = data['history'][i]
-          if (ride['request_id'] == '9a17c194-303b-4abd-b51c-f52d20833d74' || ride['request_id'] == '53b2e97b-f36a-4275-a80e-46bef15255b8') {
-            console.log(ride)
-          }
           if (ride['status'] == 'completed') {
             currentRide = {
                             'request_id': ride['request_id'],
