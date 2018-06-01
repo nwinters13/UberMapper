@@ -30,7 +30,9 @@
 
 <script>
 
-  graph1MinuteBuckets = ['<5', '5-10', '10-15', '15-20', '20-25', '25-30', '30-35', '35-40', '40-45', '45-50', '50-55', '55-60', '60+']
+  graph1MinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
+  '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
+  '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
 
   function makeGraphs() {
     makeGraph1()
@@ -43,7 +45,7 @@
             type: 'column'
         },
         title: {
-            text: 'Stacked column chart'
+            text: 'Uber Rides By Total Time'
         },
         xAxis: {
             categories: graph1MinuteBuckets
@@ -51,7 +53,7 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Total fruit consumption'
+                text: 'Number of Rides'
             },
             stackLabels: {
                 enabled: true,
