@@ -24,23 +24,24 @@
 
 
   <body>
-    <div id="graph1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id="ridesByTime" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
 
+<!-- UBER RIDES BY TOTAL TIME -->
 <script>
 
-  graph1MinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
+  ridesByTimeMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
   '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
   '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
 
   function makeGraphs() {
-    makeGraph1()
+    makeRidesByTime()
   }
 
-  function makeGraph1() {
-    graph1Series = generateGraph1Series()
-    Highcharts.chart('graph1', {
+  function makeRidesByTime() {
+    ridesByTimeSeries = generateRidesByTimeSeries()
+    Highcharts.chart('ridesByTime', {
         chart: {
             type: 'column'
         },
@@ -48,7 +49,7 @@
             text: 'Uber Rides By Total Time'
         },
         xAxis: {
-            categories: graph1MinuteBuckets
+            categories: ridesByTimeMinuteBuckets
         },
         yAxis: {
             gridLineWidth: 0,
@@ -85,12 +86,12 @@
                 }
             }
         },
-        series: graph1Series,
+        series: ridesByTimeSeries,
         credits: false
     });
   }
 
-  function generateGraph1Series() {
+  function generateRidesByTimeSeries() {
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
       rideType = rides[i]['ride_type']
@@ -99,7 +100,7 @@
       }
       let currentProductArray = series.get(rideType)
       if (currentProductArray === undefined) {
-        currentProductArray = new Array(graph1MinuteBuckets.length).fill(0)
+        currentProductArray = new Array(ridesByTimeMinuteBuckets.length).fill(0)
         series.set(rideType, currentProductArray)
         console.log('Setting series: ' + rideType)
       }
