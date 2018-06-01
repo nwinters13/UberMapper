@@ -33,11 +33,11 @@
 <!-- UBER RIDES BY Month -->
 <script>
   function makeGraphs() {
+    makeRidesByDuration()
     makeRidesByMonth()
-    makeRidesByDate()
   }
 
-  function makeRidesByDate() {
+  function makeRidesByMonth() {
     let earliestRide = findEarliestMonth()
     ridesByDateSeries = generateRidesByMonthSeries(earliestMonth)
     console.log(earliestRide)
