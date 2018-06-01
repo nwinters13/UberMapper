@@ -68,7 +68,7 @@
     count = 0
     for (let productId of productIDIterator) {
         console.log(productId)
-        makeProductIDHistoryCall(productId)
+        makeProductIDHistoryCall(productId[0])
         count = count + 1
         if (count % 8 == 0) {
           await sleep(500)
