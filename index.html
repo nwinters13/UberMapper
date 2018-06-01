@@ -147,7 +147,9 @@
                             'request_id': ride['request_id'],
                             'distance': ride['distance'],
                             'start_time': ride['start_time'],
-                            'end_time': ride['end_time']
+                            'end_time': ride['end_time'],
+                            'city': ride['start_city']['display_name'],
+                            'ride_time': parseInt(ride['end_time']) - parseInt[ride['start_time']]
                           }
             unique = true
             for (j = 0; j < rides.length; j++) {
