@@ -87,12 +87,7 @@
         crossDomain: true, // tell browser to allow cross domain.
         success: function(data) {
         //functionality goes here;
-          console.log(data)
-          for (let i = 0; i < rides.length; i++) {
-            if (productId == rides[i]['product_id']) {
-              rides[i]['ride_type'] = data
-            }
-          }
+          productIDToRideType.set(productId, data['display_name'])
         },
         error: function(data) {
         //functionality goes here;
