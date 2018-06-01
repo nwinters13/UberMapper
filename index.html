@@ -24,24 +24,121 @@
 
 
   <body>
-    <div id="ridesByTime" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id="ridesByMonth" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
 
-<!-- UBER RIDES BY TOTAL TIME -->
+
+<!-- UBER RIDES BY Month -->
+<script>
+  function makeGraphs() {
+    makeRidesByMonth()
+    makeRidesByDate()
+  }
+
+  function makeRidesByDate() {
+    let earliestRide = findEarliestMonth()
+    ridesByDateSeries = generateRidesByMonthSeries(earliestMonth)
+    Highcharts.chart('ridesByMonth', {
+      chart: {
+          type: 'area'
+      },
+      title: {
+          text: 'Uber Rides by Date'
+      },
+      xAxis: {
+          type: 'datetime'
+      },
+      tooltip: {
+          pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+      },
+      plotOptions: {
+          area: {
+              pointStart: Date.UTC(earliestRide.getFullYear(), earliestRide.getMonth()),
+              pointIntervalUnit: 'month'
+              marker: {
+                  enabled: false,
+                  symbol: 'circle',
+                  radius: 2,
+                  states: {
+                      hover: {
+                          enabled: true
+                      }
+                  }
+              }
+          }
+      },
+      //series: ridesByDateSeries
+      series: [{
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }, {
+        data: [144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4, 29.9, 71.5, 106.4, 129.2]
+    }]
+  });
+
+  function generateRidesByMonthSeries() {
+    let series = new Map();
+    for (let i = 0; i < rides.length; i++) {
+      rideType = rides[i]['ride_type']
+      if (rideType === undefined) {
+        rideType = "Unknown"
+      }
+      let currentProductArray = series.get(rideType)
+      if (currentProductArray === undefined) {
+        currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
+        series.set(rideType, currentProductArray)
+        console.log('Setting series: ' + rideType)
+      }
+      rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
+      if (rideLengthInMinutes > 60) {
+        rideLengthInMinutes = 60
+      }
+      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
+      currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
+      console.log(rideType)
+    }
+
+    jsonToReturn = []
+    seriesIterator = series.entries()
+    entry = seriesIterator.next()
+    while (!entry.done) {
+      jsonToReturn.push({
+        name : entry.value[0],
+        data : entry.value[1]
+      })
+      entry = seriesIterator.next()
+    }
+    return jsonToReturn
+  }
+
+  function findEarliestMonth() {
+    let earliestRide = new Date()
+    for (let i = 0; i < rides.length; i++) {
+      if (new Date(rides[i]['start_time']) < earliestRide) {
+        earliestRide = new Date(rides[i]['start_time'])
+      }
+    }
+    return new Date(earliestRide.getFullYear(), earliestRide.getMonth())
+  }
+
+</script>
+
+
+<!-- UBER RIDES BY DURATION -->
 <script>
 
-  ridesByTimeMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
+  ridesByDurationMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
   '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
   '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
 
   function makeGraphs() {
-    makeRidesByTime()
+    makeRidesByDuration()
   }
 
-  function makeRidesByTime() {
-    ridesByTimeSeries = generateRidesByTimeSeries()
-    Highcharts.chart('ridesByTime', {
+  function makeRidesByDuration() {
+    ridesByDurationSeries = generateRidesByDurationSeries()
+    Highcharts.chart('ridesByDuration', {
         chart: {
             type: 'column'
         },
@@ -49,7 +146,7 @@
             text: 'Uber Rides By Total Time'
         },
         xAxis: {
-            categories: ridesByTimeMinuteBuckets
+            categories: ridesByDurationMinuteBuckets
         },
         yAxis: {
             gridLineWidth: 0,
@@ -87,12 +184,12 @@
                 }
             }
         },
-        series: ridesByTimeSeries,
+        series: ridesByDurationSeries,
         credits: false
     });
   }
 
-  function generateRidesByTimeSeries() {
+  function generateRidesByDurationSeries() {
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
       rideType = rides[i]['ride_type']
@@ -101,7 +198,7 @@
       }
       let currentProductArray = series.get(rideType)
       if (currentProductArray === undefined) {
-        currentProductArray = new Array(ridesByTimeMinuteBuckets.length).fill(0)
+        currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
         series.set(rideType, currentProductArray)
         console.log('Setting series: ' + rideType)
       }
