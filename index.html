@@ -132,10 +132,6 @@
   '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
   '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
 
-  function makeGraphs() {
-    makeRidesByDuration()
-  }
-
   function makeRidesByDuration() {
     ridesByDurationSeries = generateRidesByDurationSeries()
     Highcharts.chart('ridesByDuration', {
