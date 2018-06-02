@@ -24,7 +24,7 @@
 
 
   <body>
-    <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <!-- <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
     <div id="ridesByDurationArea" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
     <div id="ridesByMonth" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
   </body>
@@ -33,7 +33,7 @@
 
 <script>
   function makeGraphs() {
-    makeRidesByDuration()
+    //makeRidesByDuration()
     makeRidesByDurationArea()
     makeRidesByMonth()
   }
@@ -51,7 +51,7 @@
           type: 'area'
       },
       title: {
-          text: 'Uber Rides by Date'
+          text: 'By Month'
       },
       xAxis: {
           type: 'datetime'
@@ -146,7 +146,7 @@
             type: 'column'
         },
         title: {
-            text: 'Uber Rides By Total Time'
+            text: 'By Duration'
         },
         xAxis: {
             categories: ridesByDurationMinuteBuckets
