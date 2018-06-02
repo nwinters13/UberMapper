@@ -295,7 +295,7 @@
       if (rideLengthInMinutes > 60) {
         rideLengthInMinutes = 60
       }
-      indexForRideLength = Math.floor(rideLengthInMinutes)
+      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
     }
 
