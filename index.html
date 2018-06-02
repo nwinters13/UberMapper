@@ -272,6 +272,16 @@
                     enabled: false,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 1,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
             }
         },
         series: ridesByDurationSeries,
