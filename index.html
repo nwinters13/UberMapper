@@ -225,15 +225,12 @@
 <!-- UBER RIDES BY DURATION AREA -->
 <script>
 
-  ridesByDurationMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
-  '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
-  '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
-
   function makeRidesByDurationArea() {
-    ridesByDurationSeries = generateRidesByDurationSeries()
+    longestRide = getLongestRideDuration()
+    ridesByDurationSeries = generateRidesByDurationAreaSeries(longestRide)
     Highcharts.chart('ridesByDurationArea', {
         chart: {
-            type: 'column'
+            type: 'area'
         },
         title: {
             text: 'Uber Rides By Total Time'
@@ -282,7 +279,7 @@
     });
   }
 
-  function generateRidesByDurationAreaSeries() {
+  function generateRidesByDurationAreaSeries(longestRide) {
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
       rideType = rides[i]['ride_type']
@@ -291,14 +288,14 @@
       }
       let currentProductArray = series.get(rideType)
       if (currentProductArray === undefined) {
-        currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
+        currentProductArray = new Array(longestRide).fill(0)
         series.set(rideType, currentProductArray)
       }
       rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
       if (rideLengthInMinutes > 60) {
         rideLengthInMinutes = 60
       }
-      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
+      indexForRideLength = Math.floor(rideLengthInMinutes)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
     }
 
@@ -313,6 +310,16 @@
       entry = seriesIterator.next()
     }
     return jsonToReturn
+  }
+
+  function getLongestRideDuration() {
+    let longestRide = 0
+    for (let i = 0; i < rides.length; i++) {
+      if (rides[i]['ride_time'] > longestRide) {
+        longestRide = rides[i]['ride_time']
+      }
+    }
+    return Math.floor(longestRide)
   }
 
 </script>
