@@ -86,7 +86,7 @@
 
   function generateRidesByMonthSeries(earliestRide) {
     let currentDate = new Date()
-    let monthDifference = (currentDate.getFullYear() - earliestRide().getFullYear()) * 12
+    let monthDifference = (currentDate.getFullYear() - earliestRide.getFullYear()) * 12
                         + (currentDate.getMonth() - earliestRide.getMonth()) + 1
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
