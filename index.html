@@ -31,13 +31,16 @@
 </html>
 
 
-<!-- UBER RIDES BY Month -->
 <script>
   function makeGraphs() {
     makeRidesByDuration()
     makeRidesByDurationArea()
     makeRidesByMonth()
   }
+</script>
+
+<!-- UBER RIDES BY Month -->
+<script>
 
   function makeRidesByMonth() {
     let earliestRide = findEarliestMonth()
@@ -81,7 +84,10 @@
     });
   }
 
-  function generateRidesByMonthSeries() {
+  function generateRidesByMonthSeries(earliestRide) {
+    let currentDate = new Date()
+    let monthDifference = (currentDate.getFullYear() - earliestRide().getFullYear()) * 12
+                        + (currentDate.getMonth() - earliestRide.getMonth()) + 1
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
       rideType = rides[i]['ride_type']
@@ -90,7 +96,7 @@
       }
       let currentProductArray = series.get(rideType)
       if (currentProductArray === undefined) {
-        currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
+        currentProductArray = new Array(monthDifference).fill(0)
         series.set(rideType, currentProductArray)
       }
       rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
