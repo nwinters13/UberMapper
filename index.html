@@ -25,6 +25,7 @@
 
   <body>
     <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    <div id="ridesByDurationArea" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
     <div id="ridesByMonth" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
   </body>
 </html>
@@ -125,7 +126,7 @@
 </script>
 
 
-<!-- UBER RIDES BY DURATION -->
+<!-- UBER RIDES BY DURATION BAR -->
 <script>
 
   ridesByDurationMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
@@ -186,6 +187,101 @@
   }
 
   function generateRidesByDurationSeries() {
+    let series = new Map();
+    for (let i = 0; i < rides.length; i++) {
+      rideType = rides[i]['ride_type']
+      if (rideType === undefined) {
+        rideType = "Unknown"
+      }
+      let currentProductArray = series.get(rideType)
+      if (currentProductArray === undefined) {
+        currentProductArray = new Array(ridesByDurationMinuteBuckets.length).fill(0)
+        series.set(rideType, currentProductArray)
+      }
+      rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
+      if (rideLengthInMinutes > 60) {
+        rideLengthInMinutes = 60
+      }
+      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
+      currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
+    }
+
+    jsonToReturn = []
+    seriesIterator = series.entries()
+    entry = seriesIterator.next()
+    while (!entry.done) {
+      jsonToReturn.push({
+        name : entry.value[0],
+        data : entry.value[1]
+      })
+      entry = seriesIterator.next()
+    }
+    return jsonToReturn
+  }
+
+</script>
+
+<!-- UBER RIDES BY DURATION AREA -->
+<script>
+
+  ridesByDurationMinuteBuckets = ['<5 Min', '5-10 Min', '10-15 Min', '15-20 Min',
+  '20-25 Min', '25-30 Min', '30-35 Min', '35-40 Min', '40-45 Min',
+  '45-50 Min', '50-55 Min', '55-60 Min', '60+ Min']
+
+  function makeRidesByDurationArea() {
+    ridesByDurationSeries = generateRidesByDurationSeries()
+    Highcharts.chart('ridesByDurationArea', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Uber Rides By Total Time'
+        },
+        xAxis: {
+            categories: ridesByDurationMinuteBuckets
+        },
+        yAxis: {
+            gridLineWidth: 0,
+            title: '',
+            min: 0,
+            stackLabels: {
+                enabled: false,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: false,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            }
+        },
+        series: ridesByDurationSeries,
+        credits: false
+    });
+  }
+
+  function generateRidesByDurationAreaSeries() {
     let series = new Map();
     for (let i = 0; i < rides.length; i++) {
       rideType = rides[i]['ride_type']
