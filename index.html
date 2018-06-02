@@ -85,7 +85,7 @@
   }
 
   function generateRidesByMonthSeries(earliestRide) {
-    let currentDate = Date.now()
+    let currentDate = new Date()
     let monthDifference = (currentDate.getFullYear() - earliestRide.getFullYear()) * 12
                         + (currentDate.getMonth() - earliestRide.getMonth()) + 1
     console.log(earliestRide)
