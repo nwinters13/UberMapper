@@ -101,12 +101,10 @@
         currentProductArray = new Array(monthDifference).fill(0)
         series.set(rideType, currentProductArray)
       }
-      rideLengthInMinutes = Math.floor(rides[i]['ride_time'] / 60)
-      if (rideLengthInMinutes > 60) {
-        rideLengthInMinutes = 60
-      }
-      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
-      currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
+      let currentRide = new Date(rides[i]['start_time'] * 1000)
+      let indexForRide = (currentRide.getFullYear() - earliestRide.getFullYear()) * 12
+                          + (currentRide.getMonth() - earliestRide.getMonth())
+      currentProductArray[indexForRide] = currentProductArray[indexForRide] + 1
     }
 
     jsonToReturn = []
