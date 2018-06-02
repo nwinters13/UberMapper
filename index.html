@@ -235,9 +235,6 @@
         title: {
             text: 'Uber Rides By Total Time'
         },
-        xAxis: {
-            categories: ridesByDurationMinuteBuckets
-        },
         yAxis: {
             gridLineWidth: 0,
             title: '',
@@ -295,7 +292,7 @@
       if (rideLengthInMinutes > 60) {
         rideLengthInMinutes = 60
       }
-      indexForRideLength = Math.floor(rideLengthInMinutes / 5)
+      indexForRideLength = Math.floor(rideLengthInMinutes)
       currentProductArray[indexForRideLength] = currentProductArray[indexForRideLength] + 1
     }
 
