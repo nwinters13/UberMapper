@@ -235,6 +235,9 @@
         title: {
             text: 'Uber Rides By Total Time'
         },
+        xAxis: {
+            type: 'linear'
+        },
         yAxis: {
             gridLineWidth: 0,
             title: '',
@@ -263,7 +266,7 @@
             pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
         plotOptions: {
-            column: {
+            area: {
                 stacking: 'normal',
                 dataLabels: {
                     enabled: false,
