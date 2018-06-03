@@ -615,6 +615,9 @@ Highcharts.theme = {
     }
     for (let i = 0; i < rides.length; i++) {
       rides[i]['ride_type'] = productIDToRideType.get(rides[i]['product_id'])
+      if (rides[i]['ride_type'] === undefined) {
+        console.log(rides[i]['product_id'])
+      }
     }
     makeGraphs()
   }
