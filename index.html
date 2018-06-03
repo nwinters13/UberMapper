@@ -61,7 +61,7 @@
         gridLineWidth: 0
       },
       tooltip: {
-          pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+          pointFormat: '<b>{point.y:,.0f}</b> rides with {series.name}'
       },
       plotOptions: {
           area: {
@@ -267,7 +267,7 @@
             shadow: false
         },
         tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
+            headerFormat: '<b>{point.x} minutes</b><br/>',
             pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
         plotOptions: {
