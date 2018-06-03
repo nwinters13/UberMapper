@@ -640,6 +640,10 @@ Highcharts.theme = {
         success: function(data) {
         //functionality goes here;
           console.log('display name: ' + data['display_name'])
+          let rideType = data['display_name']
+          if (rideType == 'uberPOOL')  {
+            rideType = 'POOL'
+          }
           productIDToRideType.set(productId, data['display_name'])
         },
         error: function(data) {
