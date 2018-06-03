@@ -613,6 +613,11 @@ Highcharts.theme = {
           await sleep(500)
         }
     }
+
+    while ($.active > 0) {
+      await sleep (25)
+    }
+
     for (let i = 0; i < rides.length; i++) {
       rides[i]['ride_type'] = productIDToRideType.get(rides[i]['product_id'])
       if (rides[i]['ride_type'] === undefined) {
@@ -634,7 +639,7 @@ Highcharts.theme = {
         crossDomain: true, // tell browser to allow cross domain.
         success: function(data) {
         //functionality goes here;
-        console.log('display name: ' + data['display_name'])
+          console.log('display name: ' + data['display_name'])
           productIDToRideType.set(productId, data['display_name'])
         },
         error: function(data) {
