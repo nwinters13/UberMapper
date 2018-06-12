@@ -95,7 +95,7 @@ Highcharts.theme = {
     console.log(earliestRide)
     Highcharts.chart('ridesByMonth', {
       chart: {
-          type: 'area'
+          type: 'areaspline'
       },
       title: {
           text: 'By Month'
@@ -121,7 +121,7 @@ Highcharts.theme = {
           shadow: false
       },
       plotOptions: {
-          area: {
+          areaspline: {
               stacking: 'normal',
               pointStart: Date.UTC(earliestRide.getFullYear(), earliestRide.getMonth()),
               pointIntervalUnit: 'month',
@@ -293,7 +293,7 @@ Highcharts.theme = {
     ridesByDurationSeries = generateRidesByDurationAreaSeries(longestRide)
     Highcharts.chart('ridesByDurationArea', {
         chart: {
-            type: 'area'
+            type: 'areaspline'
         },
         title: {
             text: 'By Duration'
@@ -328,7 +328,7 @@ Highcharts.theme = {
             pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
         plotOptions: {
-            area: {
+            areaspline: {
                 stacking: 'normal',
                 dataLabels: {
                     enabled: false,
