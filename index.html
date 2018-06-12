@@ -414,9 +414,15 @@ Highcharts.theme = {
         success: function(data) {
         //functionality goes here;
           console.log('display name: ' + data['display_name'])
+          if (data['display_name'] == 'Agora') {
+            console.log(data)
+          }
           let rideType = data['display_name']
-          if (rideType == 'uberPOOL')  {
-            rideType = 'POOL'
+          if (rideType == 'uberPOOL' || rideType == 'POOL')  {
+            rideType = 'UberPool'
+          }
+          if (rideType == 'uberX')  {
+            rideType = 'UberX'
           }
           productIDToRideType.set(productId, rideType)
         },
