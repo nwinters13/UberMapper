@@ -44,14 +44,16 @@ Highcharts.theme = {
   },
   "xAxis": {
     'ticks' : {
-      'display': 'false'
+      'display': 'false',
     },
     "labels": {
       "style": {
         "color": "#f2f2f4"
       }
     },
-    'gridLineWidth': '0'
+    'gridLineWidth': '0',
+    'lineColor': 'transparent',
+    'tickLength': '0' 
   },
   "yAxis": {
     "labels": {
@@ -105,9 +107,7 @@ Highcharts.theme = {
           text: 'By Month'
       },
       xAxis: {
-          type: 'datetime',
-          lineColor: 'transparent',
-          tickLength: 0
+          type: 'datetime'
       },
       yAxis: {
         title: '',
