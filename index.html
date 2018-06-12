@@ -417,6 +417,9 @@ Highcharts.theme = {
         console.log(rides[i]['product_id'])
       }
     }
+    rides = rides.filter(function(ride) {
+      return ride['ride_type'] != 'Agora'
+    })
     makeGraphs()
   }
 
