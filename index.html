@@ -26,7 +26,7 @@
 
   <body>
     <!-- <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
-    <div class="row" style="min-width: 310px; max-width: 1200px; margin: 0 auto">
+    <div class="row" style="min-width: 310px; max-width: 1200px; margin: 0 auto; text-align: center;">
       <div class="col-lg-4">Account age: 10</div>
       <div class="col-lg-4">Ubers taken: 200</div>
       <div class="col-lg-4">Distance traveled: 500</div>
@@ -465,11 +465,14 @@ Highcharts.theme = {
             console.log(data)
           }
           let rideType = data['display_name']
-          if (rideType == 'uberPOOL' || rideType == 'POOL')  {
+          if (rideType == 'uberPOOL' || rideType == 'POOL' || rideType == 'Pool')  {
             rideType = 'UberPool'
           }
           if (rideType == 'uberX')  {
             rideType = 'UberX'
+          }
+          if (rideType == 'uberXL') {
+            rideType = 'UberXL'
           }
           productIDToRideType.set(productId, rideType)
         },
