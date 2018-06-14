@@ -497,7 +497,7 @@ Highcharts.theme = {
       console.log('animating new size: ' + i)
       document.getElementById("ridesTaken").innerHTML = i
       setTimeout(function(){
-          document.getElementById("ridesTaken").window.location.reload(true)
+          document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href 
       }, 5);
       console.log('i animated it: ' + i)
     }
