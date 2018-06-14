@@ -224,7 +224,7 @@ Highcharts.theme = {
     ridesByDurationSeries = generateRidesByDurationSeries()
     Highcharts.chart('ridesByDuration', {
         chart: {
-            type: 'areaspline'
+            type: 'column'
         },
         title: {
             text: 'Duration in Minutes'
@@ -259,7 +259,7 @@ Highcharts.theme = {
             pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
         plotOptions: {
-            areaspline: {
+            column: {
                 stacking: 'normal',
                 dataLabels: {
                     enabled: false,
