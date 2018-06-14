@@ -490,9 +490,8 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  function animateNewSize(prevRideSize, currentRideSize) {
-    console.log('ANIMATE: ' + prevRideSize + ' ' + currentRideSize)
-    for (let i = prevRideSize; i <= currentRideSize; i++) {
+  function animateNewSize() {
+    for (let i = prevRideSize; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
       //document.getElementById("ridesTaken").window.location.reload(true)
@@ -555,13 +554,12 @@ Highcharts.theme = {
   function getDataFromUber() {
     console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount)
-    animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
-      setTimeout(() => makeRequestIDsCall(requestsProcessedCount), 0)
-      animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
+      makeRequestIDsCall(requestsProcessedCount)
     }
-    setTimeout(() => getAllProductIDs(),0)
+    animateNewSize()
+    setTimeout(() => getAllProductIDs(), 0)
   }
 
   function makeRequestIDsCall(requestOffset) {
