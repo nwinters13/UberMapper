@@ -608,13 +608,12 @@ Highcharts.theme = {
               requestIDs.add(currentRide['request_id'])
             }
             productIDs.add(ride['product_id'])
-            animateText()
-            if (requestsProcessedCount < requestsCount) {
-              setTimeout(makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-            } else {
-            }
-
           }
+        }
+        animateText()
+        if (requestsProcessedCount < requestsCount) {
+          setTimeout(makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
+        } else {
         }
       },
       error: function(data) {
