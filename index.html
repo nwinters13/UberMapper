@@ -494,7 +494,7 @@ Highcharts.theme = {
     console.log('ANIMATE: ' + prevRideSize + ' ' + currentRideSize)
     for (let i = prevRideSize; i <= currentRideSize; i++) {
       console.log('animating new size: ' + i)
-      document.getElementById("ridesTaken").innerHTML = i
+      $('#ridesTaken').text(i)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       console.log('i animated it: ' + i)
