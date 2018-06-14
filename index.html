@@ -490,20 +490,13 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  function animateNewSize() {
-    //console.log("animating: " + rideSize + " " + rides.length)
-    for (let i = rideSize; i <= rides.length; i++) {
+
+  async function animateNewSize(prevRideSize, currentRideSize) {
+    for (let i = prevRideSize; i <= currentRideSize; i++) {
       $("#ridesTaken").text(rideSize)
       document.getElementById("ridesTaken").contentWindow.location.reload(true);
-      animateNewSizeHelper()
-        //console.log('animating: ' + i)
+      await sleep(5)
     }
-
-    rideSize = rides.length;
-  }
-
-  async function animateNewSizeHelper() {
-    await sleep(5)
   }
 
   async function getRideRequestData() {
@@ -565,13 +558,9 @@ Highcharts.theme = {
       console.log('getting request IDs')
       makeRequestIDsCall(requestsProcessedCount)
 
-    //  animateNewSize()
     }
 
     getAllProductIDs()
-    //getRideRequestData()
-    //getProductTypeFromRideHistory()
-
   }
 
   function makeRequestIDsCall(requestOffset) {
@@ -611,6 +600,7 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
+        animateNewSize(currentLength, requestsProcessedCount)
       },
       error: function(data) {
       //functionality goes here;
