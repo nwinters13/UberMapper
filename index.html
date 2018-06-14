@@ -620,6 +620,7 @@ Highcharts.theme = {
     }
 
     function getToken() {
+      console.log('time to get the token')
       client.getToken()
         .then((token) => {
         console.log("I am getting the token: ", token)
