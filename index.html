@@ -490,10 +490,6 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  $('#ridesTaken').change(function(event) {
-    document.getElementById('ridesTaken').window.location.reload(true)
-  });
-
   function animateNewSize(prevRideSize, currentRideSize) {
     console.log('ANIMATE: ' + prevRideSize + ' ' + currentRideSize)
     for (let i = prevRideSize; i <= currentRideSize; i++) {
@@ -565,7 +561,7 @@ Highcharts.theme = {
       setTimeout(makeRequestIDsCall(requestsProcessedCount), 0)
       animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     }
-    getAllProductIDs()
+    setTimeout(getAllProductIDs(),0)
   }
 
   function makeRequestIDsCall(requestOffset) {
