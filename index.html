@@ -602,7 +602,7 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
-        animateNewSize(currentLength, requestsProcessedCount)
+        animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
       },
       error: function(data) {
       //functionality goes here;
