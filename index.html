@@ -491,12 +491,12 @@ Highcharts.theme = {
   rideSize = 0
 
 
-  async function animateNewSize(prevRideSize, currentRideSize) {
+  function animateNewSize(prevRideSize, currentRideSize) {
     console.log('ANIMATE: ' + prevRideSize + ' ' + currentRideSize)
     for (let i = prevRideSize; i <= currentRideSize; i++) {
       console.log('animating new size: ' + i)
       document.getElementById("ridesTaken").innerHTML = i
-      document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href 
+      //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       console.log('i animated it: ' + i)
     }
   }
