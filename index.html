@@ -491,7 +491,7 @@ Highcharts.theme = {
   rideSize = 0
 
   function animateNewSize() {
-    console.log("animating: " + rideSize + " " + rides.length)
+    //console.log("animating: " + rideSize + " " + rides.length)
     $("#ridesTaken").html(rideSize)
     for (let i = rideSize; i <= rides.length; i++) {
 
@@ -557,9 +557,11 @@ Highcharts.theme = {
   productIDToRideType = new Map();
 
   function getDataFromUber() {
+    console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount)
     animateNewSize()
     while (requestsProcessedCount < requestsCount) {
+      console.log('getting request IDs')
       makeRequestIDsCall(requestsProcessedCount)
       animateNewSize()
     }
