@@ -493,13 +493,12 @@ Highcharts.theme = {
   function animateNewSize() {
     animateNewSizeHelper()
     rideSize = rides.length;
-    $("#ridesTaken").text("HI NATE")
   }
 
   async function animateNewSizeHelper() {
     console.log("animating: " + rideSize + " " + rides.length)
-    let newRideSize = rides.length
     for (let i = rideSize; i <= rides.length; i++) {
+        console.log('animating: ' + i)
         $("#ridesTaken").text(String(i))
         await sleep(5)
     }
