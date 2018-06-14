@@ -494,7 +494,8 @@ Highcharts.theme = {
   async function animateText() {
     interval = 3000 / rides.length
     totalDistance = 0
-    for (let i = 0; i <= rides.length; i++) {
+    let num = $("#ridesTaken").text()
+    for (let i = num; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
       totalDistance = totalDistance + rides[i]['distance']
@@ -562,6 +563,7 @@ Highcharts.theme = {
     makeRequestIDsCall(requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
+      animateText()
       makeRequestIDsCall(requestsProcessedCount)
     }
     animateText()
