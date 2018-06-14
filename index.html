@@ -636,6 +636,7 @@ Highcharts.theme = {
           crossDomain: true, // tell browser to allow cross domain.
           success: function(data) {
           //functionality goes here;
+            console.log('got the bearer')
             setBearer(data)
           },
           error: function(data) {
