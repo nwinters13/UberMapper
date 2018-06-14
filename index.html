@@ -613,7 +613,8 @@ Highcharts.theme = {
       var urlParams = new URLSearchParams(window.location.search);
       let token = urlParams.get('code')
       if (token == null) {
-        getToken()
+        window.location.replace("https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=FVb5D-AfETiGJ24iehj_4azo3lv-v4XQ&scope=history+history_lite+profile&redirect_uri=https://nwinters13.github.io/uberMapper/")
+        //getToken()
       } else {
         getBearer(token)
       }
@@ -623,7 +624,7 @@ Highcharts.theme = {
       console.log('time to get the token')
       client.getToken()
         .then((token) => {
-        console.log("I am getting the token: ", token)
+          console.log("I am getting the token: ", token)
       })
     }
 
