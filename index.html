@@ -493,7 +493,7 @@ Highcharts.theme = {
 
   async function animateText() {
     interval = 200 / rides.length
-    totalDistance = 0
+    let totalDistance = $("distanceTraveled").text()
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
     for (let i = num; i <= rides.length; i++) {
@@ -508,6 +508,11 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       console.log('i animated it: ' + i)
+      if (requestsProcessedCount < requestsCount) {
+        setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
+      } else {
+        setTimeout(() => getAllProductIDs(), 0)
+      }
     }
   }
 
@@ -614,10 +619,6 @@ Highcharts.theme = {
           }
         }
         animateText()
-        if (requestsProcessedCount < requestsCount) {
-          setTimeout(makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-        } else {
-        }
       },
       error: function(data) {
       //functionality goes here;
