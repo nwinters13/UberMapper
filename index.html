@@ -511,7 +511,8 @@ Highcharts.theme = {
       if (requestsProcessedCount < requestsCount) {
         console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
         setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-      } else {
+      } else if (productIDsCalled){
+        productIDsCalled = true
         setTimeout(() => getAllProductIDs(), 0)
       }
     }
@@ -619,6 +620,7 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
+        productIDsCalled = false
         animateText()
       },
       error: function(data) {
