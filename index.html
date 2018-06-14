@@ -490,16 +490,11 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  Array.observe(rides, function() {
-    console.log('rides changed')
-    animateNewSize();
-  });
-
   async function animateNewSize() {
     let newRideSize = rides.length
     for (let i = rideSize; i <= rides.length; i++) {
         $("#ridesTaken").text(str(i))
-        await sleep(10)
+        await sleep(5)
     }
     rideSize = newRideSize
   }
@@ -557,8 +552,10 @@ Highcharts.theme = {
 
   function getDataFromUber() {
     makeRequestIDsCall(requestsProcessedCount)
+    animateNewSize()
     while (requestsProcessedCount < requestsCount) {
       makeRequestIDsCall(requestsProcessedCount)
+      animateNewSize()
     }
     getAllProductIDs()
     //getRideRequestData()
