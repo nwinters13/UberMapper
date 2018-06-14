@@ -495,15 +495,15 @@ Highcharts.theme = {
     for (let i = rideSize; i <= rides.length; i++) {
       $("#ridesTaken").text(rideSize)
       document.getElementById("ridesTaken").contentWindow.location.reload(true);
-
+      animateNewSizeHelper()
         //console.log('animating: ' + i)
     }
-    animateNewSizeHelper()
+
     rideSize = rides.length;
   }
 
   async function animateNewSizeHelper() {
-
+    await sleep(5)
   }
 
   async function getRideRequestData() {
