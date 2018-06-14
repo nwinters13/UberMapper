@@ -559,12 +559,12 @@ Highcharts.theme = {
   function getDataFromUber() {
     console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount)
+    animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
-      makeRequestIDsCall(requestsProcessedCount)
-
+      setTimeout(makeRequestIDsCall(requestsProcessedCount), 0)
+      animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     }
-
     getAllProductIDs()
   }
 
@@ -605,7 +605,6 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
-        animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
       },
       error: function(data) {
       //functionality goes here;
