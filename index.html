@@ -563,7 +563,7 @@ Highcharts.theme = {
     makeRequestIDsCall(requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
-      animateText()
+      setTimeout(() => animateText(), 0)
       makeRequestIDsCall(requestsProcessedCount)
     }
     animateText()
