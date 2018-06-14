@@ -496,7 +496,8 @@ Highcharts.theme = {
     for (let i = 0; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
-      $('#distanceTraveled').text(totalDistance + rides[i]['distance'])
+      totalDistance = totalDistance + rides[i]['distance']
+      $('#distanceTraveled').text(totalDistance)
       await sleep(interval)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
