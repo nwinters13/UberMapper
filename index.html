@@ -493,6 +493,7 @@ Highcharts.theme = {
   function animateNewSize() {
     animateNewSizeHelper()
     rideSize = rides.length;
+    $("#ridesTaken").text(String(rideSize))
   }
 
   async function animateNewSizeHelper() {
