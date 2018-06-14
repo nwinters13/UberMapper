@@ -28,7 +28,7 @@
     <!-- <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
     <div class="row" style="min-width: 310px; max-width: 1200px; margin: 0 auto; text-align: center;">
       <div class="col-lg-4"><div id="accountAge">1</div>Account age</div>
-      <div class="col-lg-4"><div id="ubersTaken">1</div>Ubers taken</div>
+      <div class="col-lg-4"><div id="ridesTaken">1</div>Ubers taken</div>
       <div class="col-lg-4"><div id="distanceTraveled">1</div>Distance traveled</div>
     </div>
     <div id="ridesByDurationArea" style="min-width: 310px; max-width: 1200px; min-height: 400px; height: 80%; margin: 0 auto"></div>
@@ -493,7 +493,6 @@ Highcharts.theme = {
   function animateNewSize() {
     animateNewSizeHelper()
     rideSize = rides.length;
-    $("#ridesTaken").text(String(rideSize))
   }
 
   async function animateNewSizeHelper() {
