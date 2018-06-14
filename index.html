@@ -558,10 +558,10 @@ Highcharts.theme = {
     animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
-      setTimeout(makeRequestIDsCall(requestsProcessedCount), 0)
+      setTimeout(() => makeRequestIDsCall(requestsProcessedCount), 0)
       animateNewSize(requestsProcessedCount - currentLength, requestsProcessedCount)
     }
-    setTimeout(getAllProductIDs(),0)
+    setTimeout(() => getAllProductIDs(),0)
   }
 
   function makeRequestIDsCall(requestOffset) {
