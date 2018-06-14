@@ -490,10 +490,9 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  _.observe(rides, function() {
+  Array.observe(rides, function() {
     console.log('rides changed')
     animateNewSize();
-
   });
 
   async function animateNewSize() {
