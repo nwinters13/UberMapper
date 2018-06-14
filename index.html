@@ -491,7 +491,7 @@ Highcharts.theme = {
   rideSize = 0
 
   function animateNewSize() {
-    for (let i = prevRideSize; i <= rides.length; i++) {
+    for (let i = 0; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
       //document.getElementById("ridesTaken").window.location.reload(true)
