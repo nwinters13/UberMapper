@@ -492,16 +492,17 @@ Highcharts.theme = {
 
   function animateNewSize() {
     console.log("animating: " + rideSize + " " + rides.length)
+    $("#ridesTaken").text(rideSize)
     for (let i = rideSize; i <= rides.length; i++) {
+
         console.log('animating: ' + i)
-        $("#ridesTaken").text(i)
     }
     animateNewSizeHelper()
     rideSize = rides.length;
   }
 
   async function animateNewSizeHelper() {
-  
+
   }
 
   async function getRideRequestData() {
