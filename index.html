@@ -491,6 +491,7 @@ Highcharts.theme = {
   rideSize = 0
 
   _.observe(rides, function() {
+    console.log('rides changed')
     animateNewSize();
 
   });
