@@ -492,23 +492,24 @@ Highcharts.theme = {
   rideSize = 0
 
   async function animateText() {
-    interval = 200 / rides.length
+    interval = 4
     let totalDistance = $("distanceTraveled").text()
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
     for (let i = num; i <= rides.length; i++) {
-      console.log('animating new size: ' + i)
+      //console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
-      console.log("set rides text")
+      //console.log("set rides text")
       totalDistance = totalDistance + rides[i]['distance']
-      console.log("total distance: " + totalDistance)
+      //console.log("total distance: " + totalDistance)
       $('#distanceTraveled').text(totalDistance)
-      console.log("set total distance")
-      //await sleep(interval)
+    //console.log("set total distance")
+      await sleep(4)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
-      console.log('i animated it: ' + i)
+      //console.log('i animated it: ' + i)
       if (requestsProcessedCount < requestsCount) {
+        console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
         setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
       } else {
         setTimeout(() => getAllProductIDs(), 0)
