@@ -561,19 +561,17 @@ Highcharts.theme = {
 
   function getDataFromUber() {
     console.log('getting request IDs')
-    makeRequestIDsCall(requestsProcessedCount)
-    while (requestsProcessedCount < requestsCount) {
-      if (!gettingHistory) {
-        console.log('getting request IDs: ' + requestsProcessedCount + ' ' + requestsProcessedCount)
-        animateText()
-        setTimeout(() => makeRequestIDsCall(requestsProcessedCount))
-      }
-    }
-    animateText()
-    setTimeout(() => getAllProductIDs(), 0)
+    makeRequestIDsCall(requestsProcessedCount, null)
+    // while (requestsProcessedCount < requestsCount) {
+    //   if (!gettingHistory) {
+    //     console.log('getting request IDs: ' + requestsProcessedCount + ' ' + requestsProcessedCount)
+    //     animateText()
+    //     setTimeout(() => makeRequestIDsCall(requestsProcessedCount))
+    //   }
+    // }
   }
 
-  function makeRequestIDsCall(requestOffset) {
+  function makeRequestIDsCall(requestOffset, totalCount) {
     gettingHistory = true
     $.ajax({
       type: 'GET',
@@ -609,7 +607,13 @@ Highcharts.theme = {
               requestIDs.add(currentRide['request_id'])
             }
             productIDs.add(ride['product_id'])
-            gettingHistory = false
+            animateText()
+            if (requestsProcessedCount < requestsCount) {
+              setTimeout(makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
+            } else {
+              animateText()
+            }
+
           }
         }
       },
