@@ -491,7 +491,7 @@ Highcharts.theme = {
   rideSize = 0
 
   async function animateNewSize() {
-    console.log("animating")
+    console.log("animating: " + rideSize + " " + rides.length)
     let newRideSize = rides.length
     for (let i = rideSize; i <= rides.length; i++) {
         $("#ridesTaken").text(String(i))
