@@ -495,8 +495,10 @@ Highcharts.theme = {
     console.log('ANIMATE: ' + prevRideSize + ' ' + currentRideSize)
     for (let i = prevRideSize; i <= currentRideSize; i++) {
       console.log('animating new size: ' + i)
-      document.getElementById("ridesTaken").src = i
-      //await sleep(5)
+      document.getElementById("ridesTaken").innerHTML = i
+      setInterval(function(){
+          document.getElementById("ridesTaken").window.location.reload(true)
+      }, 5);
       console.log('i animated it: ' + i)
     }
   }
