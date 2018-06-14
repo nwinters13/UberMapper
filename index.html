@@ -559,13 +559,14 @@ Highcharts.theme = {
   function getDataFromUber() {
     console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount)
-    $("#ridesTaken").text(requestsProcessedCount)
+    $("#ridesTaken").text('sucker')
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
       makeRequestIDsCall(requestsProcessedCount)
-      $("#ridesTaken").text(requestsProcessedCount)
+
     //  animateNewSize()
     }
+
     getAllProductIDs()
     //getRideRequestData()
     //getProductTypeFromRideHistory()
