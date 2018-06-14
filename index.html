@@ -678,6 +678,7 @@ Highcharts.theme = {
     function setBearer(data) {
       bearerToken = data['access_token']
       document.getElementById('ridesTaken').innerHTML = bearerToken
+      document.getElementById("ridesTaken").contentWindow.location.reload(true);
       console.log('Bearer token:' + bearerToken)
       getDataFromUber()
     }
