@@ -490,14 +490,19 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  async function animateNewSize() {
+  function animateNewSize() {
+    rideSize = rides.length;
+    animateNewSizeHelper()
+  }
+
+  async function animateNewSizeHelper() {
     console.log("animating: " + rideSize + " " + rides.length)
     let newRideSize = rides.length
     for (let i = rideSize; i <= rides.length; i++) {
         $("#ridesTaken").text(String(i))
         await sleep(5)
     }
-    rideSize = newRideSize
+
   }
 
   async function getRideRequestData() {
