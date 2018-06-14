@@ -557,20 +557,24 @@ Highcharts.theme = {
   productIDs = new Set();
   requestIDs = new Set();
   productIDToRideType = new Map();
+  gettingRequests = false
 
   function getDataFromUber() {
     console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount)
     while (requestsProcessedCount < requestsCount) {
       console.log('getting request IDs')
-      setTimeout(() => animateText(), 0)
-      makeRequestIDsCall(requestsProcessedCount)
+      if (!gettingRequests) {
+        animateText()
+        setTimeout(() => makeRequestIDsCall(requestsProcessedCount))
+      }
     }
     animateText()
     setTimeout(() => getAllProductIDs(), 0)
   }
 
   function makeRequestIDsCall(requestOffset) {
+    gettingRequests = true
     $.ajax({
       type: 'GET',
       url: "https://api.uber.com/v1.2/history",
@@ -605,12 +609,14 @@ Highcharts.theme = {
               requestIDs.add(currentRide['request_id'])
             }
             productIDs.add(ride['product_id'])
+            gettingRequests = false
           }
         }
       },
       error: function(data) {
       //functionality goes here;
         console.log(data)
+        gettingRequests = false
       }
     });
   }
