@@ -559,10 +559,8 @@ Highcharts.theme = {
 
   function getDataFromUber() {
     makeRequestIDsCall(requestsProcessedCount)
-    animateNewSize()
     while (requestsProcessedCount < requestsCount) {
       makeRequestIDsCall(requestsProcessedCount)
-      animateNewSize()
     }
     getAllProductIDs()
     //getRideRequestData()
@@ -605,6 +603,7 @@ Highcharts.theme = {
               requestIDs.add(currentRide['request_id'])
             }
             productIDs.add(ride['product_id'])
+            animateNewSize()
           }
         }
       },
