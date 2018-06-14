@@ -490,10 +490,11 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  function animateNewSize() {
+  async function animateNewSize() {
     for (let i = 0; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
+      await sleep(5)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       console.log('i animated it: ' + i)
