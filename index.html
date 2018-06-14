@@ -490,11 +490,14 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  async function animateNewSize() {
+  async function animateText() {
+    interval = 3000 / rides.length
+    totalDistance = 0
     for (let i = 0; i <= rides.length; i++) {
       console.log('animating new size: ' + i)
       $('#ridesTaken').text(i)
-      await sleep(5)
+      $('#distanceTraveled').text(totalDistance + rides[i]['distance'])
+      await sleep(interval)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       console.log('i animated it: ' + i)
@@ -559,7 +562,7 @@ Highcharts.theme = {
       console.log('getting request IDs')
       makeRequestIDsCall(requestsProcessedCount)
     }
-    animateNewSize()
+    animateText()
     setTimeout(() => getAllProductIDs(), 0)
   }
 
