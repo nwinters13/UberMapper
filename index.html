@@ -492,12 +492,11 @@ Highcharts.theme = {
   rideSize = 0
 
   async function animateText(rideValue) {
-    interval = 4
     let totalDistance = $("distanceTraveled").text()
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
       //console.log('animating new size: ' + i)
-    $('#ridesTaken').text(Number(rideValue) + 1)
+    $('#ridesTaken').text(Number(num) + 1)
       //console.log("set rides text")
     totalDistance = totalDistance + rides[rideValue]['distance']
       //console.log("total distance: " + totalDistance)
