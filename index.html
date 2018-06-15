@@ -208,7 +208,7 @@ Highcharts.theme = {
         earliestRide = new Date(rides[i]['start_time'] * 1000)
       }
     }
-    if (timToMonth == true) {
+    if (trimToMonth == true) {
       return new Date(earliestRide.getFullYear(), earliestRide.getMonth());
     } else {
       return earliestRide
