@@ -494,15 +494,15 @@ Highcharts.theme = {
   rideSize = 0
 
   async function animateText(val) {
-    let numRides = Number($("#ridesTaken")).text()
-    let distanceTraveled = Number($("#distanceTraveled").text()
+    let numRides = Number($("#ridesTaken").text())
+    let distanceTraveled = Number($("#distanceTraveled").text())
     $("#ridesTaken").text(numRides + 1)
     $("#distanceTraveled").text(distanceTraveled + rides[val]['distance'])
     if (val < rides.length) {
       setTimeout(() => animateText(val + 1), 0)
     }
   }
-    // 
+    //
     // let num = $("#ridesTaken").text()
     // console.log("total rides: " + rides.length)
     // for (let i = 0; i < rides.length; i++) {
