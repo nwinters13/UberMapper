@@ -417,6 +417,14 @@ Highcharts.theme = {
     return Math.floor(longestRide / 60)
   }
 
+  function getEarliestRide() {
+    for (let i = 0; i < rides.length; i++) {
+      if (rides[i]['start_time'] < earliestRide) {
+        earliestRide = rides[i]['start_time']
+      }
+    }
+  }
+
 </script>
 
 
@@ -447,6 +455,7 @@ Highcharts.theme = {
     rides = rides.filter(function(ride) {
       return ride['ride_type'] != 'Agora'
     })
+    getEarliestRide()
     setTimeout(() => animateText(0), 0)
     setTimeout(() => makeGraphs(), 0)
   }
@@ -492,6 +501,7 @@ Highcharts.theme = {
   MILLIS_IN_MONTH = 2592000000
   rides = []
   rideSize = 0
+  oldestDate = new Date()
 
   async function animateText(val) {
     let numRides = Number($("#ridesTaken").text())
