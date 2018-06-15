@@ -491,14 +491,17 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  async function animateText(rideValue) {
+  async function animateText(numRemaining) {
     let totalDistance = $("distanceTraveled").text()
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
       //console.log('animating new size: ' + i)
     $('#ridesTaken').text(Number(num) + 1)
       //console.log("set rides text")
-    totalDistance = totalDistance + rides[rideValue]['distance']
+    totalDistance = 0
+    for (let i = 0; i < rides.length; i++) {
+      totalDistance = totalDistance + rides[i]['distance']
+    }
       //console.log("total distance: " + totalDistance)
     $('#distanceTraveled').text(totalDistance)
     //console.log("set total distance")
@@ -506,15 +509,18 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
     console.log('ride value: ' + rideValue + ' requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
-    if (rideValue + 1 == requestsProcessedCount && requestsProcessedCount < requestsCount) {
-      console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
-    //  setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-    } else if (rideValue + 1 != requestsProcessedCount){
-      setTimeout(() => animateText(Number(rideValue) + 1), 0)
-    } else {
-      productIDsCalled = true
-      setTimeout(() => getAllProductIDs(), 0)
+    if (numRemaining > 0) {
+      animateText(numRemaining - 1)
     }
+    // if (rideValue + 1 == requestsProcessedCount && requestsProcessedCount < requestsCount) {
+    //   console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
+    // //  setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
+    // } else if (rideValue + 1 != requestsProcessedCount){
+    //   //setTimeout(() => animateText(Number(rideValue) + 1), 0)
+    // } else {
+    //   productIDsCalled = true
+
+
   }
 
   async function getRideRequestData() {
@@ -622,8 +628,10 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
-        productIDsCalled = false
-        animateText(requestsProcessedCount - currentLength)
+        if (requestsProcessedCount == requestsCount) {
+          setTimeout(() => animateText(currentLength))
+          setTimeout(() => getAllProductIDs(), 0)
+        }
       },
       error: function(data) {
       //functionality goes here;
