@@ -525,7 +525,7 @@ Highcharts.theme = {
     $("#accountAge").text(displayAccountAge)
     $("#ridesTaken").text(numRides + 1)
     console.log(val)
-    $("#distanceTraveled").text(distanceTraveled + rides[val]['distance'])
+    $("#distanceTraveled").text(Math.round(distanceTraveled + rides[val]['distance']))
     if (val < rides.length - 1) {
       setTimeout(() => animateText(val + 1), 0)
     }
