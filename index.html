@@ -509,8 +509,7 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
-    console.log('num remaining: ' + numRemaining + 'requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
-    if (numRemaining >= 0) {
+    if (numRemaining > 0) {
       setTimeout(() =>animateText(numRemaining - 1), 0)
     }
     // if (rideValue + 1 == requestsProcessedCount && requestsProcessedCount < requestsCount) {
@@ -632,7 +631,7 @@ Highcharts.theme = {
         if (requestsProcessedCount == requestsCount) {
           setTimeout(() => getAllProductIDs(), 0)
         }
-        console.log('calling animate text')
+        console.log('calling animate text with: ' + currentLength)
         setTimeout(() => animateText(currentLength), 0)
 
       },
