@@ -511,13 +511,11 @@ Highcharts.theme = {
       console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
       setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
     } else if (rideValue != requestsProcessedCount){
-      setTimeout(() => animateText(Number(rideValue) + 1))
+      setTimeout(() => animateText(Number(rideValue) + 1), 0)
     } else {
       productIDsCalled = true
       setTimeout(() => getAllProductIDs(), 0)
     }
-
-
   }
 
   async function getRideRequestData() {
