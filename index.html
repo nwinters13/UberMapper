@@ -504,7 +504,6 @@ Highcharts.theme = {
       //console.log("total distance: " + totalDistance)
       $('#distanceTraveled').text(totalDistance)
     //console.log("set total distance")
-      await sleep(4)
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
@@ -514,6 +513,8 @@ Highcharts.theme = {
       } else if (productIDsCalled){
         productIDsCalled = true
         setTimeout(() => getAllProductIDs(), 0)
+      } else {
+        await sleep(4)
       }
     }
   }
