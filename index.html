@@ -447,7 +447,7 @@ Highcharts.theme = {
     rides = rides.filter(function(ride) {
       return ride['ride_type'] != 'Agora'
     })
-    setTimeout(() => animateText(), 0)
+    setTimeout(() => animateText(0), 0)
     setTimeout(() => makeGraphs(), 0)
   }
 
