@@ -499,7 +499,6 @@ Highcharts.theme = {
       //console.log('animating new size: ' + i)
     $('#ridesTaken').text(Number(rideValue) + 1)
       //console.log("set rides text")
-    console.log('ride value: ' + rideValue)
     totalDistance = totalDistance + rides[rideValue]['distance']
       //console.log("total distance: " + totalDistance)
     $('#distanceTraveled').text(totalDistance)
@@ -507,6 +506,7 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
+    console.log('ride value: ' + rideValue + ' requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
     if (rideValue == requestsProcessedCount && requestsProcessedCount < requestsCount) {
       console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
       setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
