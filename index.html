@@ -499,7 +499,7 @@ Highcharts.theme = {
       //console.log('animating new size: ' + i)
     $('#ridesTaken').text(num + 1)
       //console.log("set rides text")
-    console.log(rideValue)
+    console.log('ride value: ' + rideValue)
     totalDistance = totalDistance + rides[rideValue]['distance']
       //console.log("total distance: " + totalDistance)
     $('#distanceTraveled').text(totalDistance)
@@ -514,7 +514,7 @@ Highcharts.theme = {
       productIDsCalled = true
       setTimeout(() => getAllProductIDs(), 0)
     }
-    setTimeout(() => animateText(rideValue + 1), 4)
+    setTimeout(() => animateText(Number(rideValue) + 1), 4)
 
   }
 
