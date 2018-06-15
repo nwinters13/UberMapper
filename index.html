@@ -628,11 +628,12 @@ Highcharts.theme = {
             productIDs.add(ride['product_id'])
           }
         }
+        console.log('calling animate text with: ' + currentLength)
+        setTimeout(() => animateText(currentLength), 0)
         if (requestsProcessedCount == requestsCount) {
           setTimeout(() => getAllProductIDs(), 0)
         }
-        console.log('calling animate text with: ' + currentLength)
-        setTimeout(() => animateText(currentLength), 0)
+
 
       },
       error: function(data) {
