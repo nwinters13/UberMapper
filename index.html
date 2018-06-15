@@ -113,7 +113,7 @@ Highcharts.theme = {
 <script>
 
   function makeRidesByMonth() {
-    let earliestRide = findEarliestRide()
+    let earliestRide = findEarliestRide(true)
     ridesByDateSeries = generateRidesByMonthSeries(earliestRide)
     console.log(earliestRide)
     Highcharts.chart('ridesByMonth', {
@@ -201,14 +201,18 @@ Highcharts.theme = {
     return jsonToReturn
   }
 
-  function findEarliestRide() {
+  function findEarliestRide(trimToMonth) {
     let earliestRide = new Date()
     for (let i = 0; i < rides.length; i++) {
       if (new Date(rides[i]['start_time'] * 1000) < earliestRide) {
         earliestRide = new Date(rides[i]['start_time'] * 1000)
       }
     }
-    return new Date(earliestRide.getFullYear(), earliestRide.getMonth());
+    if (timToMonth == true) {
+      return new Date(earliestRide.getFullYear(), earliestRide.getMonth());
+    } else {
+      return earliestRide
+    }
   }
 
 </script>
@@ -447,7 +451,7 @@ Highcharts.theme = {
     rides = rides.filter(function(ride) {
       return ride['ride_type'] != 'Agora'
     })
-    firstRide = findEarliestRide()
+    firstRide = findEarliestRide(false)
     setTimeout(() => animateText(0), 0)
     setTimeout(() => makeGraphs(), 0)
   }
