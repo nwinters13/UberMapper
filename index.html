@@ -506,15 +506,15 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
-      if (requestsProcessedCount < requestsCount) {
-        console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
-        setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-      } else if (productIDsCalled){
-        productIDsCalled = true
-        setTimeout(() => getAllProductIDs(), 0)
-      }
-      setTimeout(() => animateText(), 4)
+    if (requestsProcessedCount < requestsCount) {
+      console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
+      setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
+    } else if (productIDsCalled){
+      productIDsCalled = true
+      setTimeout(() => getAllProductIDs(), 0)
     }
+    setTimeout(() => animateText(), 4)
+
   }
 
   async function getRideRequestData() {
