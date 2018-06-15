@@ -629,7 +629,7 @@ Highcharts.theme = {
           }
         }
         if (requestsProcessedCount == requestsCount) {
-          setTimeout(() => animateText(currentLength))
+          setTimeout(() => animateText(currentLength), 0)
           setTimeout(() => getAllProductIDs(), 0)
         }
       },
