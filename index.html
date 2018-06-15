@@ -497,7 +497,7 @@ Highcharts.theme = {
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
       //console.log('animating new size: ' + i)
-    $('#ridesTaken').text(num + 1)
+    $('#ridesTaken').text(Number(num) + 1)
       //console.log("set rides text")
     console.log('ride value: ' + rideValue)
     totalDistance = totalDistance + rides[rideValue]['distance']
@@ -507,15 +507,14 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
-    if (requestsProcessedCount < requestsCount) {
+    if (rideValue == requestsProcessedCount && requestsProcessedCount < requestsCount) {
       console.log("Requests processed: " + requestsProcessedCount + ' ' + requestsCount)
       setTimeout(() => makeRequestIDsCall(requestsProcessedCount, requestsCount), 0)
-    } else if (productIDsCalled){
+    } else if (rideValue != requestsProcessedCount){
+      setTimeout(() => animateText(Number(rideValue) + 1))
+    } else {
       productIDsCalled = true
       setTimeout(() => getAllProductIDs(), 0)
-      setTimeout(() => animateText(Number(rideValue) + 1), 4)
-    } else {
-      setTimeout(() => animateText(Number(rideValue) + 1), 4)
     }
 
 
@@ -624,7 +623,7 @@ Highcharts.theme = {
           }
         }
         productIDsCalled = false
-        animateText(0)
+        animateText()
       },
       error: function(data) {
       //functionality goes here;
