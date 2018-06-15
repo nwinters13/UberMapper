@@ -630,9 +630,9 @@ Highcharts.theme = {
           }
         }
         if (requestsProcessedCount == requestsCount) {
-          console.log('calling animate text')
           setTimeout(() => getAllProductIDs(), 0)
         }
+        console.log('calling animate text')
         setTimeout(() => animateText(currentLength), 0)
 
       },
