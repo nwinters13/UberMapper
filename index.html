@@ -572,7 +572,10 @@ Highcharts.theme = {
 
   function getDataFromUber() {
     console.log('getting request IDs')
-    makeRequestIDsCall(requestsProcessedCount, null)
+    makeRequestIDsCall(requestsProcessedCount, null, false)
+    for (let i = requestsProcessedCount; i < requestsCount; i++) {
+      makeRequestIDsCall(i, requestsCount, true)
+    }
     // while (requestsProcessedCount < requestsCount) {
     //   if (!gettingHistory) {
     //     console.log('getting request IDs: ' + requestsProcessedCount + ' ' + requestsProcessedCount)
@@ -582,7 +585,7 @@ Highcharts.theme = {
     // }
   }
 
-  function makeRequestIDsCall(requestOffset, totalCount) {
+  function makeRequestIDsCall(requestOffset, totalCount, isAsync {
     gettingHistory = true
     $.ajax({
       type: 'GET',
@@ -594,7 +597,7 @@ Highcharts.theme = {
       contentType: 'application/json',
       dataType: 'json', // use json only, not jsonp
       crossDomain: true, // tell browser to allow cross domain.
-      async: false,
+      async: true,
       success: function(data) {
       //functionality goes here;
         requestsCount = data['count']
