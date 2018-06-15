@@ -447,7 +447,8 @@ Highcharts.theme = {
     rides = rides.filter(function(ride) {
       return ride['ride_type'] != 'Agora'
     })
-    makeGraphs()
+    setTimeout(() => animateText(), 0)
+    setTimeout(() => makeGraphs(), 0)
   }
 
   function makeProductIDHistoryCall(productId, i) {
@@ -492,10 +493,21 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  async function animateText(numRemaining) {
-    let totalDistance = $("distanceTraveled").text()
+  async function animateText(val) {
+    let numRides = Number($("#ridesTaken")).text()
+    let distanceTraveled = Number($("#distanceTraveled").text()
+    $("#ridesTaken").text(numRides + 1)
+    $("#distanceTraveled").text(distanceTraveled + rides[val]['distance'])
+    if (val < rides.length) {
+      setTimeout(() => animateText(val + 1), 0)
+    }
+  }
+
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
+    for (let i = 0; i < rides.length; i++) {
+      animateText(i)
+    }
       //console.log('animating new size: ' + i)
     $('#ridesTaken').text(Number(num) + 1)
       //console.log("set rides text")
@@ -631,9 +643,8 @@ Highcharts.theme = {
           }
         }
         console.log('calling animate text with: ' + currentLength)
-        setTimeout(() => animateText(currentLength), 0)
         if (requestsProcessedCount == requestsCount) {
-          setTimeout(() => getAllProductIDs(), 0)
+          getAllProductIDs()
         }
 
 
