@@ -497,7 +497,7 @@ Highcharts.theme = {
     let num = $("#ridesTaken").text()
     console.log("total rides: " + rides.length)
       //console.log('animating new size: ' + i)
-    $('#ridesTaken').text(Number(num) + 1)
+    $('#ridesTaken').text(Number(rideValue) + 1)
       //console.log("set rides text")
     console.log('ride value: ' + rideValue)
     totalDistance = totalDistance + rides[rideValue]['distance']
@@ -623,7 +623,7 @@ Highcharts.theme = {
           }
         }
         productIDsCalled = false
-        animateText()
+        animateText(requestsProcessedCount - currentLength)
       },
       error: function(data) {
       //functionality goes here;
