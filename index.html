@@ -509,7 +509,7 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.reload(true)
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
-    console.log('requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
+    console.log('num remaining: ' + numRemaining + 'requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
     if (numRemaining >= 0) {
       setTimeout(() =>animateText(numRemaining - 1), 0)
     }
