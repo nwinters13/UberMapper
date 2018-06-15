@@ -491,7 +491,7 @@ Highcharts.theme = {
   rides = []
   rideSize = 0
 
-  async function animateText() {
+  async function animateText(rideValue) {
     interval = 4
     let totalDistance = $("distanceTraveled").text()
     let num = $("#ridesTaken").text()
@@ -499,7 +499,8 @@ Highcharts.theme = {
       //console.log('animating new size: ' + i)
     $('#ridesTaken').text(num + 1)
       //console.log("set rides text")
-    totalDistance = totalDistance + rides[i]['distance']
+      console.log(i)
+    totalDistance = totalDistance + rides[rideValue]['distance']
       //console.log("total distance: " + totalDistance)
     $('#distanceTraveled').text(totalDistance)
     //console.log("set total distance")
@@ -513,7 +514,7 @@ Highcharts.theme = {
       productIDsCalled = true
       setTimeout(() => getAllProductIDs(), 0)
     }
-    setTimeout(() => animateText(), 4)
+    setTimeout(() => animateText(rideValue + 1), 4)
 
   }
 
@@ -620,7 +621,7 @@ Highcharts.theme = {
           }
         }
         productIDsCalled = false
-        animateText()
+        animateText(0)
       },
       error: function(data) {
       //functionality goes here;
