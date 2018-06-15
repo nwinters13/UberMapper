@@ -497,6 +497,7 @@ Highcharts.theme = {
     let numRides = Number($("#ridesTaken").text())
     let distanceTraveled = Number($("#distanceTraveled").text())
     $("#ridesTaken").text(numRides + 1)
+    console.log(val)
     $("#distanceTraveled").text(distanceTraveled + rides[val]['distance'])
     if (val < rides.length) {
       setTimeout(() => animateText(val + 1), 0)
