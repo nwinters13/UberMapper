@@ -27,9 +27,9 @@
   <body>
     <!-- <div id="ridesByDuration" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div> -->
     <div class="row" style="min-width: 310px; max-width: 1200px; margin: 0 auto; text-align: center;">
-      <div class="col-lg-4"><div id="accountAge">1</div>Account age</div>
-      <div class="col-lg-4"><div id="ridesTaken">1</div>Ubers taken</div>
-      <div class="col-lg-4"><div id="distanceTraveled">1</div>Distance traveled</div>
+      <div class="col-lg-4"><div id="accountAge">0</div>Account age</div>
+      <div class="col-lg-4"><div id="ridesTaken">0</div>Ubers taken</div>
+      <div class="col-lg-4"><div id="distanceTraveled">0</div>Distance traveled</div>
     </div>
     <div id="ridesByDurationArea" style="min-width: 310px; max-width: 1200px; min-height: 400px; height: 80%; margin: 0 auto"></div>
     <div id="ridesByMonth" style="min-width: 310px; max-width: 1200px; min-height: 400px; height: 80%; margin: 0 auto"></div>
@@ -510,7 +510,7 @@ Highcharts.theme = {
       //document.getElementById("ridesTaken").window.location.href = document.getElementById("ridesTaken").window.location.href
       //console.log('i animated it: ' + i)
     console.log('requestsProcessedCount: ' + requestsProcessedCount + ' request Count: ' + requestsCount)
-    if (numRemaining > 0) {
+    if (numRemaining >= 0) {
       setTimeout(() =>animateText(numRemaining - 1), 0)
     }
     // if (rideValue + 1 == requestsProcessedCount && requestsProcessedCount < requestsCount) {
@@ -634,7 +634,7 @@ Highcharts.theme = {
           setTimeout(() => getAllProductIDs(), 0)
         }
         setTimeout(() => animateText(currentLength), 0)
-        
+
       },
       error: function(data) {
       //functionality goes here;
