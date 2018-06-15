@@ -502,6 +502,11 @@ Highcharts.theme = {
   async function animateText(val) {
     let numRides = Number($("#ridesTaken").text())
     let distanceTraveled = Number($("#distanceTraveled").text())
+    var date2 = new Date();
+    var timeDiff = Math.abs(firstRide.getTime() - date1.getTime());
+    let dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    let displayAccountAge = Math.ceil(dayDiff * val / rides.length)
+    $("#accountAge").text(displayAccountAge)
     $("#ridesTaken").text(numRides + 1)
     console.log(val)
     $("#distanceTraveled").text(distanceTraveled + rides[val]['distance'])
