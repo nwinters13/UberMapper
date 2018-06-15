@@ -578,7 +578,9 @@ Highcharts.theme = {
   function getDataFromUber() {
     console.log('getting request IDs')
     makeRequestIDsCall(requestsProcessedCount, null, false)
+    console.log('num request processed: ' + requestsProcessedCount)
     for (let i = requestsProcessedCount; i < requestsCount; i+=50) {
+      console.log('making request call #: ' + i / 50)
       makeRequestIDsCall(i, requestsCount, true)
     }
     // while (requestsProcessedCount < requestsCount) {
