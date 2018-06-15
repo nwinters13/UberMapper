@@ -513,8 +513,11 @@ Highcharts.theme = {
     } else if (productIDsCalled){
       productIDsCalled = true
       setTimeout(() => getAllProductIDs(), 0)
+      setTimeout(() => animateText(Number(rideValue) + 1), 4)
+    } else {
+      setTimeout(() => animateText(Number(rideValue) + 1), 4)
     }
-    setTimeout(() => animateText(Number(rideValue) + 1), 4)
+
 
   }
 
